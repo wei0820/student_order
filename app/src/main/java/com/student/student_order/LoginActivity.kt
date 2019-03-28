@@ -1,10 +1,7 @@
 package com.student.student_order
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
-
-import kotlinx.android.synthetic.main.activity_login.*
+import android.support.v7.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
 

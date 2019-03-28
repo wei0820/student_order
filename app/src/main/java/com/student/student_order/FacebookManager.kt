@@ -1,36 +1,26 @@
 package com.student.student_order
 
-import com.google.firebase.auth.FirebaseAuth
-import android.os.Bundle
 import android.app.Activity
 import android.content.Context
-import android.net.Uri
-import org.json.JSONObject
+import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
+import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
-import java.util.*
-import com.google.firebase.auth.AuthResult
-import android.support.annotation.NonNull
-import android.widget.ImageView
-import com.facebook.*
-import com.google.firebase.auth.FacebookAuthProvider
-import com.google.firebase.auth.AuthCredential
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.auth.FirebaseAuth
 import org.json.JSONException
+import org.json.JSONObject
 import java.net.MalformedURLException
 import java.net.URL
-import com.facebook.Profile.getCurrentProfile
-import com.facebook.internal.ImageRequest.getProfilePictureUri
-import com.facebook.appevents.internal.ActivityLifecycleTracker.isTracking
-import com.facebook.ProfileTracker
-import android.widget.TextView
+import java.util.*
 
 
-
-
-class FacebookManager
-{
+class FacebookManager {
     private var profileTracker: ProfileTracker? = null
     private var auth: FirebaseAuth? = null
     private val authListener: FirebaseAuth.AuthStateListener? = null

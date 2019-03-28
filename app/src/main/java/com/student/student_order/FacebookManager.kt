@@ -18,6 +18,12 @@ import org.json.JSONObject
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.*
+import com.facebook.Profile.getCurrentProfile
+import com.facebook.internal.ImageRequest.getProfilePictureUri
+
+
+
+
 
 
 class FacebookManager {
@@ -199,5 +205,15 @@ class FacebookManager {
 
         }
     }
+    fun checkFbState(){
+        if(Profile.getCurrentProfile()!=null){
+            val profile = Profile.getCurrentProfile()
+            val userPhoto = profile.getProfilePictureUri(300, 300)
+            val id = profile.id
+            val name = profile.name
 
+        }else{
+
+        }
+    }
 }

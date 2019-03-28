@@ -18,12 +18,6 @@ import org.json.JSONObject
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.*
-import com.facebook.Profile.getCurrentProfile
-import com.facebook.internal.ImageRequest.getProfilePictureUri
-
-
-
-
 
 
 class FacebookManager {
@@ -213,6 +207,7 @@ class FacebookManager {
             val name = profile.name
 
         }else{
+
 
         }
     }

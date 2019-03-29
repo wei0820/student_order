@@ -76,9 +76,6 @@ class FacebookManager {
             }
         }
 
-        // [START_EXCLUDE silent]
-
-        // [END_EXCLUDE]
         auth = FirebaseAuth.getInstance()
 
         val credential = FacebookAuthProvider.getCredential(token.token)
@@ -91,10 +88,6 @@ class FacebookManager {
                     if (!task.isSuccessful()) {
 
                     }
-
-                    // [START_EXCLUDE]
-
-                    // [END_EXCLUDE]
                 }
             })
     }
@@ -193,8 +186,6 @@ class FacebookManager {
 //                    mFbImageView,
 //                    context
 //                )
-
-
             }
 
         }

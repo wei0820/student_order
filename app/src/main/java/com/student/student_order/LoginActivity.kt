@@ -21,9 +21,17 @@ class LoginActivity : AppCompatActivity() {
         FacebookSdk.sdkInitialize(applicationContext)
 
         setContentView(R.layout.activity_login)
+
+        if (FacebookManager.checkFbState(this)){
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }else{
+
+        }
         mFbLoginBtn = findViewById(R.id.login_button)
         FacebookManager.printHashKey(this)
-        FacebookManager.fbLogin(this,mFbLoginBtn,callbackManager)
+        FacebookManager.fbLogin(this,mFbLoginBtn,callbackManager,MainActivity::class.java)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

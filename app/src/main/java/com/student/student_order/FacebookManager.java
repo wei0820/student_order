@@ -2,6 +2,7 @@ package com.student.student_order;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -53,7 +54,7 @@ public class FacebookManager {
     private static AccessTokenTracker accessTokenTracker;
 
     //臉書登入
-    public static void fbLogin(final Context context, LoginButton mFbLoginButton, CallbackManager callbackManager) {
+    public static void fbLogin(final Context context, LoginButton mFbLoginButton, CallbackManager callbackManager, final Class<?> c) {
         List<String> PERMISSIONS_PUBLISH = Arrays.asList("public_profile", "email");
         mFbLoginButton.setReadPermissions(PERMISSIONS_PUBLISH);
         mFbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -69,7 +70,9 @@ public class FacebookManager {
                         Log.d(TAG, object.toString());
                         // Get facebook data from login
                         Bundle bFacebookData = getFacebookData(context,object);
-//                        ((Activity)context).finish();
+                        ((Activity)context).startActivity(new Intent( ((Activity)context),c));
+                        ((Activity)context).finish();
+
 
 
                     }
@@ -153,7 +156,25 @@ public class FacebookManager {
         }
 
     }
+    public static  boolean checkFbState(Context context) {
+        if (Profile.getCurrentProfile() != null) {
+            Profile profile = Profile.getCurrentProfile();
+            // 取得用戶大頭照
+            Uri userPhoto = profile.getProfilePictureUri(300, 300);
+            String id = profile.getId();
+            String name = profile.getName();
+            Log.d(TAG, "checkFbState: "+userPhoto);
+            Log.d(TAG, "checkFbState: "+id);
+            Log.d(TAG, "checkFbState: "+name);
+            return true;
 
+        } else {
+
+            return  false;
+        }
+
+
+    }
 
     public static  void setUsetProfile(final Context context , final ImageView mFbImageView, final TextView mUserIdTextView, final TextView mUserAccountTextView) {
         profileTracker = new ProfileTracker() {

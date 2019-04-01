@@ -7,7 +7,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Base64;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -25,7 +23,6 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -163,9 +160,6 @@ public class FacebookManager {
             Uri userPhoto = profile.getProfilePictureUri(300, 300);
             String id = profile.getId();
             String name = profile.getName();
-            Log.d(TAG, "checkFbState: "+userPhoto);
-            Log.d(TAG, "checkFbState: "+id);
-            Log.d(TAG, "checkFbState: "+name);
             return true;
 
         } else {
@@ -182,14 +176,12 @@ public class FacebookManager {
             protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                 if (oldProfile != null) {
                     //登出後
-//                    fbName.setText("");
                     mFbImageView.setImageBitmap(null);
 
                 }
 
                 if (currentProfile != null) {
                     //登入
-//                    fbName.setText(currentProfile.getName());
                     String id = currentProfile.getId();
                     String name = currentProfile.getName();
                     mUserIdTextView.setText(id);

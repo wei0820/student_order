@@ -20,6 +20,8 @@ import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
+
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LocationListener {
     override fun onLocationChanged(p0: Location?) {
     }

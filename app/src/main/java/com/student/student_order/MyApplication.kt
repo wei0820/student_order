@@ -12,6 +12,7 @@ class  MyApplication : Application() {
         AppEventsLogger.activateApp(this)
 
         Firebase.setAndroidContext(this)
+        checkTime()
 
 
 

@@ -27,6 +27,7 @@ class MemberActivity : AppCompatActivity() {
         mNameTextView = findViewById(R.id.nametext)
         mPointTextView = findViewById(R.id.pointtext)
         mTimeTextView = findViewById(R.id.timetext)
+        mTimeTextView.text = "上次登入時間:"+MyApi.getDate(MySharedPrefernces.getMyCardTime(this).toLong())
 
     }
 

@@ -142,8 +142,8 @@ public class FacebookManager {
             Uri userPhoto = profile.getProfilePictureUri(300, 300);
             String id = profile.getId();
             String name = profile.getName();
-            mUserAccountTextView.setText(name);
-            mUserIdTextView.setText(id);
+            mUserAccountTextView.setText("會員姓名:"+name);
+            mUserIdTextView.setText("會員編號:"+id);
             Picasso.get()
                     .load(userPhoto)
                     .resize(150, 150)

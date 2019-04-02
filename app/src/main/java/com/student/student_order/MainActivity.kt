@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_camera -> {
                 // Handle the camera action
+                startActivity(Intent(this,MemberActivity::class.java))
             }
             R.id.nav_gallery -> {
 

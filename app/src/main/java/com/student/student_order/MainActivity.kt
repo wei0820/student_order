@@ -1,6 +1,10 @@
 package com.student.student_order
 
 import android.content.Intent
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -16,10 +20,29 @@ import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LocationListener {
+    override fun onLocationChanged(p0: Location?) {
+    }
+
+    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+    }
+
+    override fun onProviderEnabled(p0: String?) {
+    }
+
+    override fun onProviderDisabled(p0: String?) {
+    }
+
     lateinit var mImageView: ImageView
     lateinit var mNameTextView: TextView
     lateinit var mEmailTextView: TextView
+    var lat :Double = 0.0
+    var lon :Double = 0.0
+
+
+    private var locationManager: LocationManager? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,6 +55,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
         initLayout()
+        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
+
+        try {
+            // Request location updates
+            locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
+        } catch (ex: SecurityException) {
+
+        }
     }
 
     override fun onBackPressed() {
@@ -67,11 +98,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_gallery -> {
 
-            }
-            R.id.nav_slideshow -> {
 
             }
+            R.id.nav_slideshow -> {
+                val strInput = "037603156"
+                val myIntentDial = Intent(Intent.ACTION_CALL, Uri.parse("tel:$strInput"))
+                startActivity(myIntentDial)
+            }
             R.id.nav_manage -> {
+
+            goTOGooglemap(lat,lon,24.683258, 120.967297)
 
             }
             R.id.nav_share -> {
@@ -99,4 +135,46 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         FacebookManager.checkFbState(this,mImageView,mNameTextView,mEmailTextView)
 
     }
+
+
+    fun goTOGooglemap(startLatitude:Double,startLongitude:Double,endLatitude:Double,endLongitude:Double){
+        val startLatitude = startLatitude
+        val startLongitude = startLongitude
+        val endLatitude = endLatitude
+        val endLongitude = endLongitude
+
+        val saddr = "saddr=$startLatitude,$startLongitude"
+        val daddr = "daddr=$endLatitude,$endLongitude"
+        val uriString = "http://maps.google.com/maps?$saddr&$daddr"
+
+        val uri = Uri.parse(uriString)
+
+        val intent = Intent(android.content.Intent.ACTION_VIEW, uri)
+
+        // If you want to get rid of the dialog,
+        // Before the startActivity() add this
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity")
+
+        startActivity(intent)
+    }
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+
+        }
+
+        override fun onProviderEnabled(p0: String?) {
+        }
+
+        override fun onProviderDisabled(p0: String?) {
+        }
+
+        override fun onLocationChanged(location: Location) {
+            lat = location.latitude
+            lon = location.longitude
+
+        }
+
+
+    }
+
 }

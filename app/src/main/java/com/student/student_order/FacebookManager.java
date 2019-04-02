@@ -33,6 +33,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 
+import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,8 +70,6 @@ public class FacebookManager {
                         Bundle bFacebookData = getFacebookData(context,object);
                         ((Activity)context).startActivity(new Intent( ((Activity)context),c));
                         ((Activity)context).finish();
-
-
 
                     }
                 });
@@ -144,6 +143,13 @@ public class FacebookManager {
             String name = profile.getName();
             mUserAccountTextView.setText(name);
             mUserIdTextView.setText(id);
+            Picasso.get()
+                    .load(userPhoto)
+                    .resize(150, 150)
+                    .centerCrop()
+                    .into(mFbImageView);
+
+
 
         } else {
             mFbImageView.setImageDrawable(null);
@@ -208,8 +214,6 @@ public class FacebookManager {
             Bundle bundle = new Bundle();
             String id = object.getString("id");
             String photo = "";
-
-
             try {
                 URL profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?width=200&height=150");
                 Log.d(TAG, profile_pic + "");

@@ -8,13 +8,18 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
+    lateinit var mImageView: ImageView
+    lateinit var mNameTextView: TextView
+    lateinit var mEmailTextView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,6 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        initLayout()
     }
 
     override fun onBackPressed() {
@@ -82,5 +88,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+    fun initLayout(){
+        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        val headerView = navigationView.getHeaderView(0)
+        mImageView = headerView.findViewById(R.id.imageView)
+        mNameTextView = headerView.findViewById(R.id.nametext)
+        mEmailTextView = headerView.findViewById(R.id.textView)
+        FacebookManager.checkFbState(this,mImageView,mNameTextView,mEmailTextView)
+
     }
 }

@@ -90,14 +90,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
                 startActivity(Intent(this,MemberActivity::class.java))
             }
             R.id.nav_gallery -> {
-
 
             }
             R.id.nav_slideshow -> {
@@ -118,8 +115,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 LoginManager.getInstance().logOut()
                 startActivity(Intent(this,LoginActivity::class.java))
                 finish()
-
-
             }
         }
 

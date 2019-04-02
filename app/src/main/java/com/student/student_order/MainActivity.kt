@@ -19,10 +19,51 @@ import android.widget.Toast
 import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 
 
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LocationListener,
+    MfirebaeCallback {
+    override fun getUserLogoutState(p0: Boolean) {
+    }
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LocationListener {
+    override fun resetPassWordState(p0: Boolean) {
+    }
+
+    override fun getsSndPasswordResetEmailState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageType(p0: String?, p1: String?) {
+    }
+
+    override fun getUpdateUserName(p0: Boolean) {
+    }
+
+    override fun getDatabaseData(p0: Any?) {
+    }
+
+    override fun getuserLoginEmail(p0: String?) {
+    }
+
+    override fun getDeleteState(p0: Boolean, p1: String?, p2: Any?) {
+    }
+
+    override fun getFireBaseDBState(p0: Boolean, p1: String?) {
+    }
+
+    override fun getuseLoginId(p0: String?) {
+    }
+
+    override fun createUserState(p0: Boolean) {
+    }
+
+    override fun useLognState(p0: Boolean) {
+    }
+
+    override fun getFirebaseStorageState(p0: Boolean) {
+    }
+
     override fun onLocationChanged(p0: Location?) {
     }
 
@@ -44,9 +85,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var locationManager: LocationManager? = null
 
+    private var mfiebaselibsClass: MfiebaselibsClass? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mfiebaselibsClass = MfiebaselibsClass(this, this)
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
@@ -170,6 +214,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             lon = location.longitude
 
         }
+
+
+    }
+
+    private fun setMemberData(
+        Key: String, name: String,
+        photo: String
+    ) {
+        val memberMap = HashMap<String,String>()
+        memberMap.put(MemberData.KEY_ID, Key)
+        memberMap.put(MemberData.KEY_NAME, name)
+        memberMap.put(MemberData.KEY_PHOTO, photo)
+        memberMap.put(MemberData.KEY_POINT, "100")
+        memberMap.put(MemberData.KEY_MEMBERLV, MemberData.MEMBER_LV_1)
+        mfiebaselibsClass!!.setFireBaseDB(MemberData.KEY_URL, Key, memberMap)
 
 
     }

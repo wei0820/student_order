@@ -71,8 +71,6 @@ public class FacebookManager {
                         ((Activity)context).startActivity(new Intent( ((Activity)context),c));
                         ((Activity)context).finish();
 
-
-
                     }
                 });
                 Bundle parameters = new Bundle();
@@ -216,8 +214,6 @@ public class FacebookManager {
             Bundle bundle = new Bundle();
             String id = object.getString("id");
             String photo = "";
-
-
             try {
                 URL profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?width=200&height=150");
                 Log.d(TAG, profile_pic + "");

@@ -8,5 +8,6 @@
     <string name="action_settings">設定</string>
     <string name="facebook_app_id">587547585043297</string>
     <string name="fb_login_protocol_scheme">fb587547585043297</string>
+    <string name="title_activity_member">MemberActivity</string>
 
 </resources>

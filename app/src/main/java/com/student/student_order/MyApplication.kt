@@ -6,12 +6,14 @@ import com.facebook.appevents.AppEventsLogger
 import com.firebase.client.Firebase
 
 class  MyApplication : Application() {
+
     override fun onCreate() {
         super.onCreate()
         FacebookSdk.sdkInitialize(getApplicationContext())
         AppEventsLogger.activateApp(this)
 
         Firebase.setAndroidContext(this)
+        checkTime()
 
 
 

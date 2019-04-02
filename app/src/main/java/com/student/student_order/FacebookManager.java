@@ -134,15 +134,16 @@ public class FacebookManager {
                 });
     }
 
-    public static  void checkFbState(Context context ,ImageView mFbImageView, TextView mUserIdTextView, TextView mUserAccountTextView) {
+    public static  void checkFbState(Context context ,ImageView mFbImageView, TextView mUserIdTextView,
+                                     TextView mUserAccountTextView) {
         if (Profile.getCurrentProfile() != null) {
             Profile profile = Profile.getCurrentProfile();
             // 取得用戶大頭照
             Uri userPhoto = profile.getProfilePictureUri(300, 300);
             String id = profile.getId();
             String name = profile.getName();
-            mUserAccountTextView.setText(name);
-            mUserIdTextView.setText(id);
+            mUserAccountTextView.setText("會員姓名:"+name);
+            mUserIdTextView.setText("會員編號:"+id);
             Picasso.get()
                     .load(userPhoto)
                     .resize(150, 150)
@@ -272,5 +273,32 @@ public class FacebookManager {
         } catch (Exception e) {
             Log.e(TAG, "printHashKey()", e);
         }
+    }
+
+    public static  void checkFbState(Context context ,ImageView mFbImageView, TextView mUserIdTextView,
+                                     TextView mUserAccountTextView,TextView mEmailText) {
+        if (Profile.getCurrentProfile() != null) {
+            Profile profile = Profile.getCurrentProfile();
+            // 取得用戶大頭照
+            Uri userPhoto = profile.getProfilePictureUri(300, 300);
+            String id = profile.getId();
+            String name = profile.getName();
+            mUserAccountTextView.setText(name);
+            mUserIdTextView.setText(id);
+            Picasso.get()
+                    .load(userPhoto)
+                    .resize(150, 150)
+                    .centerCrop()
+                    .into(mFbImageView);
+
+
+
+        } else {
+            mFbImageView.setImageDrawable(null);
+            mUserAccountTextView.setText("");
+            mUserIdTextView.setText("");
+
+        }
+
     }
 }

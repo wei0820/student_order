@@ -33,6 +33,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 
+import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -144,6 +145,13 @@ public class FacebookManager {
             String name = profile.getName();
             mUserAccountTextView.setText(name);
             mUserIdTextView.setText(id);
+            Picasso.get()
+                    .load(userPhoto)
+                    .resize(150, 150)
+                    .centerCrop()
+                    .into(mFbImageView);
+
+
 
         } else {
             mFbImageView.setImageDrawable(null);

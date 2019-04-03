@@ -1,12 +1,15 @@
 package com.student.student_order
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -84,6 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private var locationManager: LocationManager? = null
+    private val MY_PERMISSIONS_REQUEST_LOCATION = 1
 
     private var mfiebaselibsClass: MfiebaselibsClass? = null
 
@@ -92,6 +96,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mfiebaselibsClass = MfiebaselibsClass(this, this)
 
         setContentView(R.layout.activity_main)
+        checkPermission()
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -107,6 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // Request location updates
             locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
         } catch (ex: SecurityException) {
+
 
         }
         if(FacebookManager.checkFbState(this)){
@@ -239,6 +245,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mfiebaselibsClass!!.setFireBaseDB(MemberData.KEY_URL, Key, memberMap)
 
 
+    }
+    fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSIONS_REQUEST_LOCATION)
+        }
+
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
+
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            } else {
+                Toast.makeText(this, "需要定位功能,才能使用喔", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
     }
 
 }

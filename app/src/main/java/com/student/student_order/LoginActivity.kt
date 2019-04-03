@@ -15,9 +15,12 @@ import android.net.Uri
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.widget.Toast
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 
 
 class LoginActivity : AppCompatActivity(){
+
     val list = listOf<String>(
         android.Manifest.permission.ACCESS_FINE_LOCATION,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -35,7 +38,6 @@ class LoginActivity : AppCompatActivity(){
         callbackManager = CallbackManager.Factory.create()
         AppEventsLogger.activateApp(this)
         FacebookSdk.sdkInitialize(applicationContext)
-
         setContentView(R.layout.activity_login)
 
         if (FacebookManager.checkFbState(this)){

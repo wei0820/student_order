@@ -109,6 +109,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } catch (ex: SecurityException) {
 
         }
+        if(FacebookManager.checkFbState(this)){
+            val id :String = FacebookManager.checkFbStateString(this).split(",")[0]
+            val name :String = FacebookManager.checkFbStateString(this).split(",")[1]
+
+            val photo :String = FacebookManager.checkFbStateString(this).split(",")[2]
+            setMemberData(id,name,photo)
+
+        }
     }
 
     override fun onBackPressed() {
@@ -226,8 +234,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         memberMap.put(MemberData.KEY_ID, Key)
         memberMap.put(MemberData.KEY_NAME, name)
         memberMap.put(MemberData.KEY_PHOTO, photo)
-        memberMap.put(MemberData.KEY_POINT, "100")
-        memberMap.put(MemberData.KEY_MEMBERLV, MemberData.MEMBER_LV_1)
+        memberMap.put(MemberData.KEY_POINT, "10000")
+//        memberMap.put(MemberData.KEY_MEMBERLV, MemberData.MEMBER_LV_1)
         mfiebaselibsClass!!.setFireBaseDB(MemberData.KEY_URL, Key, memberMap)
 
 

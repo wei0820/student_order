@@ -11,7 +11,6 @@ class  MyApplication : Application() {
         super.onCreate()
         FacebookSdk.sdkInitialize(getApplicationContext())
         AppEventsLogger.activateApp(this)
-
         Firebase.setAndroidContext(this)
         checkTime()
 
@@ -36,10 +35,6 @@ class  MyApplication : Application() {
            var now : Long =System.currentTimeMillis()
             if(now-last>=24* 60 * 60 * 1000){
                 MySharedPrefernces.saveMyCardTime(getApplicationContext(),"")
-                MySharedPrefernces.saveUserKm(getApplicationContext(),"")
-                MySharedPrefernces.saveUserStep(getApplicationContext(),"")
-                MySharedPrefernces.saveUserDhot(getApplicationContext(),"")
-                MySharedPrefernces.saveUserhot(getApplicationContext(),"")
 
             }
 

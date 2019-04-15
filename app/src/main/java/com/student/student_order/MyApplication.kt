@@ -13,22 +13,13 @@ class  MyApplication : Application() {
         AppEventsLogger.activateApp(this)
         Firebase.setAndroidContext(this)
         checkTime()
-
-
-
-
-
     }
-
-
 
     fun  checkTime(){
         if (MySharedPrefernces.getMyCardTime(getApplicationContext()).equals("")) {
             System.currentTimeMillis()
-            MySharedPrefernces.saveMyCardTime(getApplicationContext(),System.currentTimeMillis().toString());
+            MySharedPrefernces.saveMyCardTime(getApplicationContext(),System.currentTimeMillis().toString())
 
-
-//依照設定格式取得字串
         } else {
 
            var last: Long = (MySharedPrefernces.getMyCardTime(getApplicationContext())).toLong()

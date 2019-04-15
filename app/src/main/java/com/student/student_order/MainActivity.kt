@@ -155,6 +155,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this,MemberActivity::class.java))
             }
             R.id.nav_gallery -> {
+                startActivity(Intent(this,OrderNewsActivity::class.java))
 
             }
             R.id.nav_slideshow -> {

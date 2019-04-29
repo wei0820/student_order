@@ -38,7 +38,6 @@ public class OrderActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
-
             }
         });
     }

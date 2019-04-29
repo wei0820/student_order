@@ -67,6 +67,8 @@
         </activity>
         <activity android:name=".Order_1Activity">
         </activity>
+        <activity android:name=".AddMenuActivity">
+        </activity>
     </application>
 
 </manifest>

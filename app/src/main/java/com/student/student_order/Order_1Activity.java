@@ -1,5 +1,6 @@
 package com.student.student_order;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.*;
 
 public class Order_1Activity extends AppCompatActivity {
     private ListView mListView;
+    private String name = "";
     String[] menu1 = new String[]{"煎蛋","起司蛋","火腿蛋","豬肉蛋","培根蛋","肉鬆蛋","雞肉蛋","薯餅蛋","鮪魚蛋","牛肉蛋","鱈魚","黑胡椒豬排","煙燻雞","無骨雞排","起司豬排","卡啦雞腿","椒麻雞腿","泰式雞腿","熱狗薯餅蛋","豬肉總匯","薯餅總匯","牛肉總匯","豬肉總匯","卡啦雞總匯"};
     String[] menu2 =new String[]{"煎蛋","起司蛋","火腿蛋","豬肉蛋","培根蛋","肉鬆蛋","雞肉蛋","薯餅蛋","鮪魚蛋","牛肉蛋","鱈魚","黑胡椒豬排","煙燻雞肉","無骨雞排","起司豬排","卡啦雞腿","椒麻雞腿","泰式雞腿"};
     String[] menu3 =new String[]{"原味","玉米","乳酪絲","起司","火腿","肉鬆","培根","蔬菜","熱狗","鮪魚","豬肉 ","雞肉","薯餅","豬排","牛肉","燻雞","德國香腸","卡啦"};
@@ -39,12 +41,20 @@ public class Order_1Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(Order_1Activity.this,"您選擇了"+mString[i].toString(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu",i);
+                bundle.putString("name",mString[i]);
+                intent.putExtras(bundle);
+                intent.setClass(getApplication(),AddMenuActivity.class);
+                startActivity(intent);
 
             }
         });
     }
     private void  getData(){
        int i =  getIntent().getIntExtra("menu",0);
+       name = getIntent().getStringExtra("name");
         switch (i){
             case 0:
                 mString = menu2;
@@ -88,6 +98,7 @@ public class Order_1Activity extends AppCompatActivity {
 
 
         }
+
 
     }
 }

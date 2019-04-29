@@ -32,6 +32,7 @@ public class OrderActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu",i);
+                bundle.putString("name",parents[i]);
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),Order_1Activity.class);
                 startActivity(intent);

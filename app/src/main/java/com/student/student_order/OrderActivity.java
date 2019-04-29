@@ -36,8 +36,6 @@ public class OrderActivity extends AppCompatActivity {
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),Order_1Activity.class);
                 startActivity(intent);
-
-
             }
         });
     }

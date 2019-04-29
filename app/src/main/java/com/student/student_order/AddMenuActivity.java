@@ -3,6 +3,7 @@ package com.student.student_order;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -142,22 +143,30 @@ public class AddMenuActivity extends AppCompatActivity {
             }
         });
     }
-    private void getData(){
-       name =  getIntent().getStringExtra("name");
-       int i = getIntent().getIntExtra("",0);
-       if(i == 2){
-           layout.setVisibility(View.GONE);
-           layout2.setVisibility(View.VISIBLE);
-           layout3.setVisibility(View.GONE);
 
-       }else if(i == 4 ){
-           layout.setVisibility(View.GONE);
-           layout2.setVisibility(View.GONE);
-           layout3.setVisibility(View.VISIBLE);
-       }else {
-           layout.setVisibility(View.VISIBLE);
-           layout2.setVisibility(View.GONE);
-           layout3.setVisibility(View.GONE);
-       }
+    private static final String TAG = "AddMenuActivity";
+    private void getData() {
+        name = getIntent().getStringExtra("name");
+        int i = getIntent().getIntExtra("menu", 0);
+
+        switch (i) {
+            case 2:
+                layout.setVisibility(View.GONE);
+                layout2.setVisibility(View.VISIBLE);
+                layout3.setVisibility(View.GONE);
+                break;
+            case 3:
+                layout.setVisibility(View.GONE);
+                layout2.setVisibility(View.GONE);
+                layout3.setVisibility(View.VISIBLE);
+                break;
+            default:
+                layout.setVisibility(View.VISIBLE);
+                layout2.setVisibility(View.GONE);
+                layout3.setVisibility(View.GONE);
+                break;
+        }
     }
+
+
 }

@@ -15,7 +15,7 @@ public class OrderActivity extends AppCompatActivity {
 
 
     String[] parents = new String[]{
-            "漢堡","三明治","蛋餅","吐司","飲料"};
+            "漢堡","三明治","蛋餅","飲料"};
     ListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,23 +1,20 @@
 package com.student.student_order
 
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.facebook.CallbackManager
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.widget.LoginButton
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.net.Uri
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.widget.Toast
 
 
 class LoginActivity : AppCompatActivity(){
+
     val list = listOf<String>(
         android.Manifest.permission.ACCESS_FINE_LOCATION,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -35,7 +32,6 @@ class LoginActivity : AppCompatActivity(){
         callbackManager = CallbackManager.Factory.create()
         AppEventsLogger.activateApp(this)
         FacebookSdk.sdkInitialize(applicationContext)
-
         setContentView(R.layout.activity_login)
 
         if (FacebookManager.checkFbState(this)){

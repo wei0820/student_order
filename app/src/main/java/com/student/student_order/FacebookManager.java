@@ -160,6 +160,23 @@ public class FacebookManager {
         }
 
     }
+    public static  String checkFbStateString(Context context) {
+        if (Profile.getCurrentProfile() != null) {
+            Profile profile = Profile.getCurrentProfile();
+            // 取得用戶大頭照
+            Uri userPhoto = profile.getProfilePictureUri(300, 300);
+            String id = profile.getId();
+            String name = profile.getName();
+            return id+","+name+","+userPhoto;
+
+        } else {
+
+            return  "";
+        }
+
+
+    }
+
     public static  boolean checkFbState(Context context) {
         if (Profile.getCurrentProfile() != null) {
             Profile profile = Profile.getCurrentProfile();

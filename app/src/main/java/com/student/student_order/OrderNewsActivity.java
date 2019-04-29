@@ -14,7 +14,7 @@ import iammert.com.expandablelib.ExpandableLayout;
 import iammert.com.expandablelib.Section;
 
 public class OrderNewsActivity extends AppCompatActivity {
-
+    private static final String TAG = "OrderNewsActivity";
     String[] parents = new String[]{"三明治",
             "漢堡","蛋餅","河粉","點心","吐司類","中式類","套餐類","飲料類","鐵板類"};
 
@@ -30,6 +30,7 @@ public class OrderNewsActivity extends AppCompatActivity {
             @Override
             public void renderParent(View view, FruitCategory model, boolean isExpanded, int parentPosition) {
                 ((TextView) view.findViewById(R.id.tvParent)).setText(model.name);
+                Log.d(TAG, "renderParent: "+model.name);
                 if (isExpanded){
                     view.findViewById(R.id.arrow).setBackgroundResource(R.drawable.ic_arrow_drop_up_black_24dp);
 
@@ -41,6 +42,8 @@ public class OrderNewsActivity extends AppCompatActivity {
 
             @Override
             public void renderChild(View view, Fruit model, int parentPosition, int childPosition) {
+                Log.d(TAG, "renderChild: "+model.name);
+
                 ((TextView) view.findViewById(R.id.tvChild)).setText(model.name);
 
             }

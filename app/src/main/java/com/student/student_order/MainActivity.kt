@@ -10,15 +10,15 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val MY_PERMISSIONS_REQUEST_LOCATION = 1
 
     private var mfiebaselibsClass: MfiebaselibsClass? = null
-
+    lateinit var mOrderBtn : RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mfiebaselibsClass = MfiebaselibsClass(this, this)
@@ -123,6 +123,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setMemberData(id,name,photo)
 
         }
+        mOrderBtn = findViewById(R.id.orderbtn)
+        mOrderBtn.setOnClickListener {
+            startActivity(Intent(this,OrderActivity::class.java))
+
+
+        }
     }
 
     override fun onBackPressed() {
@@ -152,10 +158,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_camera -> {
-                startActivity(Intent(this,MemberActivity::class.java))
+                startActivity(Intent(this@MainActivity,MemberActivity::class.java))
             }
             R.id.nav_gallery -> {
-                startActivity(Intent(this,OrderNewsActivity::class.java))
+                startActivity(Intent(this@MainActivity,OrderNewsActivity::class.java))
 
             }
             R.id.nav_slideshow -> {
@@ -174,7 +180,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_send -> {
                 Toast.makeText(this,"會員登出",Toast.LENGTH_SHORT).show()
                 LoginManager.getInstance().logOut()
-                startActivity(Intent(this,LoginActivity::class.java))
+                startActivity(Intent(this@MainActivity,LoginActivity::class.java))
                 finish()
             }
         }
@@ -248,9 +254,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
     fun checkPermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(this@MainActivity, android.Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSIONS_REQUEST_LOCATION)
+            ActivityCompat.requestPermissions(this@MainActivity, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSIONS_REQUEST_LOCATION)
         }
 
     }
@@ -259,7 +265,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             } else {
-                Toast.makeText(this, "需要定位功能,才能使用喔", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "需要定位功能,才能使用喔", Toast.LENGTH_SHORT).show()
                 return
             }
         }

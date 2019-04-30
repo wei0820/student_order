@@ -69,6 +69,8 @@
         </activity>
         <activity android:name=".AddMenuActivity">
         </activity>
+        <activity android:name=".FastAddActivity">
+        </activity>
     </application>
 
 </manifest>

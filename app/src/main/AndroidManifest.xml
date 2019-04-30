@@ -4,11 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
             android:name=".MyApplication"
             android:allowBackup="true"
@@ -56,6 +57,19 @@
                 android:name=".MemberActivity"
                 android:label="@string/title_activity_member"
                 android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".OrderNewsActivity"
+                android:label="@string/title_activity_news"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".OrderActivity">
+        </activity>
+        <activity android:name=".Order_1Activity">
+        </activity>
+        <activity android:name=".AddMenuActivity">
+        </activity>
+        <activity android:name=".FastAddActivity">
         </activity>
     </application>
 

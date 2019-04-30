@@ -57,49 +57,73 @@ public class Order_1Activity extends AppCompatActivity {
     private void  getData(){
         lay =  getIntent().getIntExtra("menu",0);
        name = getIntent().getStringExtra("name");
-        switch (lay){
-            case 0:
-                mString = menu2;
-                break;
-            case 1:
-                mString = menu1;
+       String type  = getIntent().getStringExtra("type");
+       if(type.equals("order")){
+           switch (lay){
+               case 0:
+                   mString = menu2;
+                   break;
+               case 1:
+                   mString = menu1;
 
-                break;
-            case 2:
-                mString = menu4;
+                   break;
+               case 2:
+                   mString = menu4;
 
-                break;
-            case 3:
-                mString = menu9;
+                   break;
+               case 3:
+                   mString = menu9;
 
-                break;
-            case 4:
-                mString = menu9;
+                   break;
 
-                break;
-            case 5:
-                mString = menu6;
+           }
 
-                break;
-            case 6:
-                mString = menu7;
+       }else {
+           switch (lay){
+               case 0:
+                   mString = menu1;
+                   break;
+               case 1:
+                   mString = menu2;
 
-                break;
-            case 7:
-                mString = menu8;
+                   break;
+               case 2:
+                   mString = menu3;
 
-                break;
-            case 8:
-                mString = menu9;
+                   break;
+               case 3:
+                   mString = menu4;
 
-                break;
-            case 9:
-                mString = menu10;
+                   break;
+               case 4:
+                   mString = menu5;
 
-                break;
+                   break;
+               case 5:
+                   mString = menu6;
+
+                   break;
+               case 6:
+                   mString = menu7;
+
+                   break;
+               case 7:
+                   mString = menu8;
+
+                   break;
+               case 8:
+                   mString = menu9;
+
+                   break;
+               case 9:
+                   mString = menu10;
+
+                   break;
 
 
-        }
+           }
+       }
+
 
 
     }

@@ -125,13 +125,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         mOrderBtn = findViewById(R.id.orderbtn)
         mOrderBtn.setOnClickListener {
-            startActivity(Intent(this,OrderActivity::class.java))
+            val intent  =Intent()
+
+            intent.setClass(this,OrderActivity::class.java)
+
+
+            startActivity(intent)
 
 
         }
         mFast = findViewById(R.id.fast);
         mFast.setOnClickListener {
-            startActivity(Intent(this,FastAddActivity::class.java))
+            val intent  =Intent()
+            intent.setClass(this,FastAddActivity::class.java)
+            startActivity(intent)
 
         }
 

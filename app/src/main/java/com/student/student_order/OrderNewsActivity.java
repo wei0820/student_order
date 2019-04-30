@@ -25,7 +25,6 @@ public class OrderNewsActivity extends AppCompatActivity {
 
 
         ExpandableLayout sectionLinearLayout = (ExpandableLayout) findViewById(R.id.el);
-
         sectionLinearLayout.setRenderer(new ExpandableLayout.Renderer<FruitCategory, Fruit>() {
             @Override
             public void renderParent(View view, FruitCategory model, boolean isExpanded, int parentPosition) {

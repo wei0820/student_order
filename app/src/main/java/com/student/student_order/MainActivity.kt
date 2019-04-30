@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var lat :Double = 0.0
     var lon :Double = 0.0
 
-
+    lateinit var mFast :RelativeLayout
     private var locationManager: LocationManager? = null
     private val MY_PERMISSIONS_REQUEST_LOCATION = 1
 
@@ -129,6 +129,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         }
+        mFast = findViewById(R.id.fast);
+        mFast.setOnClickListener {
+            startActivity(Intent(this,FastAddActivity::class.java))
+
+        }
+
     }
 
     override fun onBackPressed() {

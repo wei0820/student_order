@@ -6,28 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-public class OrderActivity extends AppCompatActivity {
-    private ListView mListview,mListview2;
-    private static final String TAG = "OrderActivity";
-
-
-
-
-    String[] parents = new String[]{
-            "漢堡","三明治","蛋餅","飲料"};
+public class FastAddActivity extends AppCompatActivity {
+    private ListView mListView;
     ListAdapter adapter;
+        String[] parents = new String[]{"三明治",
+            "漢堡","蛋餅","河粉","點心","吐司類","中式類","套餐類","飲料類","鐵板類"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order2);
-        mListview = findViewById(R.id.listview);
-        mListview2 = findViewById(R.id.listview2);
+        setContentView(R.layout.activity_fast_add);
+        mListView = findViewById(R.id.listview);
         adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 ,parents);
-        mListview.setAdapter(adapter);
-        mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(OrderActivity.this,"您選擇了"+parents[i].toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(FastAddActivity.this,"您選擇了"+parents[i].toString(),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu",i);
@@ -37,5 +31,6 @@ public class OrderActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

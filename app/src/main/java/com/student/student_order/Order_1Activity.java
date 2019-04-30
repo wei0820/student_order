@@ -70,7 +70,7 @@ public class Order_1Activity extends AppCompatActivity {
 
                 break;
             case 3:
-                mString = menu6;
+                mString = menu9;
 
                 break;
             case 4:

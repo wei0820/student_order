@@ -71,6 +71,7 @@
         </activity>
         <activity android:name=".FastAddActivity">
         </activity>
+        <activity android:name=".UserMessgeActivity"></activity>
     </application>
 
 </manifest>

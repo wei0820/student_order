@@ -148,24 +148,32 @@ public class AddMenuActivity extends AppCompatActivity {
     private void getData() {
         name = getIntent().getStringExtra("name");
         int i = getIntent().getIntExtra("menu", 0);
-
-        switch (i) {
-            case 2:
-                layout.setVisibility(View.GONE);
-                layout2.setVisibility(View.VISIBLE);
-                layout3.setVisibility(View.GONE);
-                break;
-            case 3:
-                layout.setVisibility(View.GONE);
-                layout2.setVisibility(View.GONE);
-                layout3.setVisibility(View.VISIBLE);
-                break;
-            default:
-                layout.setVisibility(View.VISIBLE);
-                layout2.setVisibility(View.GONE);
-                layout3.setVisibility(View.GONE);
-                break;
+        String type = getIntent().getStringExtra("type");
+        if (type.equals("fast")){
+            mNameText.setText(name);
+            layout.setVisibility(View.GONE);
+            layout2.setVisibility(View.GONE);
+            layout3.setVisibility(View.GONE);
+        }else {
+            switch (i) {
+                case 2:
+                    layout.setVisibility(View.GONE);
+                    layout2.setVisibility(View.VISIBLE);
+                    layout3.setVisibility(View.GONE);
+                    break;
+                case 3:
+                    layout.setVisibility(View.GONE);
+                    layout2.setVisibility(View.GONE);
+                    layout3.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    layout.setVisibility(View.VISIBLE);
+                    layout2.setVisibility(View.GONE);
+                    layout3.setVisibility(View.GONE);
+                    break;
+            }
         }
+
     }
 
 

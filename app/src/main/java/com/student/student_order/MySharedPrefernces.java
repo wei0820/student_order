@@ -24,16 +24,16 @@ public class MySharedPrefernces {
     // 儲存
     public static final String KEY_ID = "id";
 
-    public static void saveId(Context context, int userid) {
+    public static void saveId(Context context, String userid) {
         SharedPreferences sp = context.getSharedPreferences(NAME, Activity.MODE_PRIVATE);
-        sp.edit().putInt(KEY_ID, userid).commit();
+        sp.edit().putString(KEY_ID, userid).commit();
 
 
     }
 
-    public static int getId(Context context) {
+    public static String getId(Context context) {
         SharedPreferences sp = context.getSharedPreferences(NAME, Activity.MODE_PRIVATE);
-        return sp.getInt(KEY_ID, 0);
+        return sp.getString(KEY_ID, "");
     }
 
     // 儲存 userid

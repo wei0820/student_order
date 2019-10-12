@@ -127,6 +127,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val photo :String = FacebookManager.checkFbStateString(this).split(",")[2]
             setMemberData(id,name,photo)
             MySharedPrefernces.saveUserId(this,name)
+            MySharedPrefernces.saveId(this,id)
 
         }
         mOrderBtn = findViewById(R.id.orderbtn)
@@ -203,6 +204,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 LoginManager.getInstance().logOut()
                 startActivity(Intent(this@MainActivity,LoginActivity::class.java))
                 finish()
+            }
+            R.id.nav_food ->{
+                startActivity(Intent(this@MainActivity,FoodLoveListActivity::class.java))
+
             }
         }
 

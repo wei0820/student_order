@@ -3,20 +3,29 @@ package com.student.student_order;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import com.google.gson.Gson;
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass;
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback;
 
-public class AddMenuActivity extends AppCompatActivity {
+import java.util.Calendar;
+import java.util.HashMap;
+
+public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallback {
     private SwitchCompat switchCompat1,switchCompat2,switchCompat3,switchCompat4,switchCompat5,switchCompat6,switchCompat7;
     private TextView mNameText;
     private Button mButton1,mButton2;
     private String add,add2,add3,add4,add5,add6,add7;
     private String name;
     private LinearLayout layout,layout2,layout3;
+    MfiebaselibsClass mfiebaselibsClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mfiebaselibsClass = new MfiebaselibsClass(this,this);
         setContentView(R.layout.activity_add_menu);
         layout = findViewById(R.id.layout1);
         layout2 = findViewById(R.id.layout2);
@@ -46,6 +55,7 @@ public class AddMenuActivity extends AppCompatActivity {
                     add = "不加生菜";
 
                 }
+
                 mNameText.setText(name + add);
 
             }
@@ -89,6 +99,7 @@ public class AddMenuActivity extends AppCompatActivity {
                     Toast.makeText(getApplication(),"不加醬油膏",Toast.LENGTH_SHORT).show();
                     add4 = "不加醬油膏";
                 }
+
                 mNameText.setText(name + add4);
 
             }
@@ -97,27 +108,43 @@ public class AddMenuActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    Toast.makeText(getApplication(),"要加番茄醬",Toast.LENGTH_SHORT).show();
-                    add5 = "要加番茄醬";
+                    Toast.makeText(getApplication(),"要加泰式酸辣醬",Toast.LENGTH_SHORT).show();
+                    add5 = "要加泰式酸辣醬";
                 }else {
-                    Toast.makeText(getApplication(),"不加番茄醬",Toast.LENGTH_SHORT).show();
-                    add5 = "不加番茄醬";
+                    Toast.makeText(getApplication(),"不加泰式酸辣醬",Toast.LENGTH_SHORT).show();
+                    add5 = "不加泰式酸辣醬";
                 }
-                mNameText.setText(name + add4 +add5 );
+                if (add4!=null){
+                    mNameText.setText(name + add4 +add5 );
+
+                }else {
+                    mNameText.setText(name+add5 );
+
+                }
 
             }
         });
         switchCompat6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
                 if(b){
-                    Toast.makeText(getApplication(),"要加泰式酸辣醬",Toast.LENGTH_SHORT).show();
-                    add6 = "要加泰式酸辣醬";
+                    Toast.makeText(getApplication(),"要加番茄醬",Toast.LENGTH_SHORT).show();
+                    add6 = "要加番茄醬";
                 }else {
-                    Toast.makeText(getApplication(),"不加泰式酸辣醬",Toast.LENGTH_SHORT).show();
-                    add6 = "不加泰式酸辣醬";
+                    Toast.makeText(getApplication(),"不加番茄醬",Toast.LENGTH_SHORT).show();
+                    add6 = "不加番茄醬";
                 }
-                mNameText.setText(name + add4 +add5 +add6);
+
+                if (add4!=null&&add5!=null){
+                    mNameText.setText(name + add4 +add5 +add6 );
+
+                }else {
+                    mNameText.setText(name+add6);
+
+                }
+
 
             }
         });
@@ -135,6 +162,24 @@ public class AddMenuActivity extends AppCompatActivity {
 
             }
         });
+        mButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mCal = Calendar.getInstance();
+                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+
+                // kk:24小時制, hh:12小時制
+
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put("id",MySharedPrefernces.getId(AddMenuActivity.this));
+                hashMap.put("time",System.currentTimeMillis()+"");
+                hashMap.put("food",mNameText.getText().toString());
+                mfiebaselibsClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(AddMenuActivity.this), s.toString(), hashMap);
+                Toast.makeText(AddMenuActivity.this,"送出訂單,請到歷史紀錄觀看",Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
 
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,25 +193,98 @@ public class AddMenuActivity extends AppCompatActivity {
     private void getData() {
         name = getIntent().getStringExtra("name");
         int i = getIntent().getIntExtra("menu", 0);
-
-        switch (i) {
-            case 2:
-                layout.setVisibility(View.GONE);
-                layout2.setVisibility(View.VISIBLE);
-                layout3.setVisibility(View.GONE);
-                break;
-            case 3:
-                layout.setVisibility(View.GONE);
-                layout2.setVisibility(View.GONE);
-                layout3.setVisibility(View.VISIBLE);
-                break;
-            default:
-                layout.setVisibility(View.VISIBLE);
-                layout2.setVisibility(View.GONE);
-                layout3.setVisibility(View.GONE);
-                break;
+        String type = getIntent().getStringExtra("type");
+        if (type.equals("fast")){
+            mNameText.setText(name);
+            layout.setVisibility(View.GONE);
+            layout2.setVisibility(View.GONE);
+            layout3.setVisibility(View.GONE);
+        }else {
+            switch (i) {
+                case 2:
+                    layout.setVisibility(View.GONE);
+                    layout2.setVisibility(View.VISIBLE);
+                    layout3.setVisibility(View.GONE);
+                    break;
+                case 3:
+                    layout.setVisibility(View.GONE);
+                    layout2.setVisibility(View.GONE);
+                    layout3.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    layout.setVisibility(View.VISIBLE);
+                    layout2.setVisibility(View.GONE);
+                    layout3.setVisibility(View.GONE);
+                    break;
+            }
         }
+
     }
 
 
+    @Override
+    public void getDatabaseData(Object o) {
+
+
+    }
+
+    @Override
+    public void getDeleteState(boolean b, String s, Object o) {
+
+    }
+
+    @Override
+    public void createUserState(boolean b) {
+
+    }
+
+    @Override
+    public void useLognState(boolean b) {
+
+    }
+
+    @Override
+    public void getuseLoginId(String s) {
+
+    }
+
+    @Override
+    public void getuserLoginEmail(String s) {
+
+    }
+
+    @Override
+    public void resetPassWordState(boolean b) {
+
+    }
+
+    @Override
+    public void getFireBaseDBState(boolean b, String s) {
+
+    }
+
+    @Override
+    public void getFirebaseStorageState(boolean b) {
+
+    }
+
+    @Override
+    public void getFirebaseStorageType(String s, String s1) {
+
+    }
+
+    @Override
+    public void getsSndPasswordResetEmailState(boolean b) {
+
+    }
+
+    @Override
+    public void getUpdateUserName(boolean b) {
+
+    }
+
+    @Override
+    public void getUserLogoutState(boolean b) {
+
+    }
 }

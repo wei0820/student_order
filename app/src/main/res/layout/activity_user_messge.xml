@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/activity_user_messge"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+    >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+        >
+            <TextView
+                    android:id="@+id/usermsgtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="8dp"
+            ></TextView>
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <EditText
+                android:id="@+id/usermsgedt"
+                android:paddingLeft="8dp"
+                android:hint="輸入訊息"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+        ></EditText>
+        <Button
+                android:layout_width="match_parent"
+                android:id="@+id/usermsgbtn"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_weight="8"
+                android:text="送出"
+        ></Button>
+
+    </LinearLayout>
+</LinearLayout>

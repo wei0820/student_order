@@ -24,6 +24,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
+import com.firebase.client.Firebase
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LocationListener,
@@ -121,20 +126,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             val photo :String = FacebookManager.checkFbStateString(this).split(",")[2]
             setMemberData(id,name,photo)
+            MySharedPrefernces.saveUserId(this,name)
+            MySharedPrefernces.saveId(this,id)
 
         }
         mOrderBtn = findViewById(R.id.orderbtn)
         mOrderBtn.setOnClickListener {
-            startActivity(Intent(this,OrderActivity::class.java))
+            val intent  =Intent()
+
+            intent.setClass(this,OrderActivity::class.java)
+
+
+            startActivity(intent)
 
 
         }
         mFast = findViewById(R.id.fast);
         mFast.setOnClickListener {
-            startActivity(Intent(this,FastAddActivity::class.java))
+            val intent  =Intent()
+            intent.setClass(this,FastAddActivity::class.java)
+            startActivity(intent)
 
         }
-
     }
 
     override fun onBackPressed() {
@@ -181,6 +194,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_share -> {
+//                setFireBase()
+                startActivity(Intent(this@MainActivity,UserMessgeActivity::class.java))
+
 
             }
             R.id.nav_send -> {
@@ -188,6 +204,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 LoginManager.getInstance().logOut()
                 startActivity(Intent(this@MainActivity,LoginActivity::class.java))
                 finish()
+            }
+            R.id.nav_food ->{
+                startActivity(Intent(this@MainActivity,FoodLoveListActivity::class.java))
+
             }
         }
 
@@ -276,5 +296,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+
+//    private fun setFireBase() {
+//        Firebase.setAndroidContext(this)
+//        val url = "https://order-3fe87.firebaseio.com/foodList"
+//
+//        val mFirebaseRef = Firebase(url)
+//        mFirebaseRef.addChildEventListener(object : com.firebase.client.ChildEventListener {
+//            override fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+////                val resultData = dataSnapshot.getValue(ResultData::class.java)
+////                if(resultData!=null){
+//////                    val intent =Intent();
+//////                    val bundle = Bundle()
+//////                    bundle.putString("tomsg",resultData.tomsg)
+//////                    intent.putExtras(bundle)
+//////                    intent.setClass(this@MainActivity,UserMessgeActivity::class.java)
+//////                    startActivity(intent)
+////                }
+//            }
+//
+//            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String) {
+//
+//            }
+//
+//            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+//
+//            }
+//
+//            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String) {
+//
+//            }
+//
+//            override fun onCancelled(firebaseError: FirebaseError) {
+//
+//            }
+//
+//        })
+//
+//
+//    }
 
 }

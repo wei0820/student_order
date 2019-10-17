@@ -183,14 +183,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this@MainActivity,OrderNewsActivity::class.java))
 
             }
-            R.id.nav_slideshow -> {
-                val strInput = "037603156"
-                val myIntentDial = Intent(Intent.ACTION_CALL, Uri.parse("tel:$strInput"))
-                startActivity(myIntentDial)
-            }
+//            R.id.nav_slideshow -> {
+//                val strInput = "037603156"
+//                val myIntentDial = Intent(Intent.ACTION_CALL, Uri.parse("tel:$strInput"))
+//                startActivity(myIntentDial)
+//            }
             R.id.nav_manage -> {
+                UiHelper.setDilog(this@MainActivity)
 
-            goTOGooglemap(lat,lon,24.683258, 120.967297)
+//            goTOGooglemap(lat,lon,24.683258, 120.967297)
 
             }
             R.id.nav_share -> {

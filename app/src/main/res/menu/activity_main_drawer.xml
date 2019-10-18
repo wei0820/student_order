@@ -7,7 +7,7 @@
         <item
                 android:id="@+id/nav_camera"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="會員點數"/>
+                android:title="會員資料"/>
         <item
                 android:id="@+id/nav_gallery"
                 android:icon="@drawable/ic_menu_gallery"
@@ -16,14 +16,14 @@
                 android:id="@+id/nav_food"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="歷史紀錄"/>
-        <item
-                android:id="@+id/nav_slideshow"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="聯絡電話"/>
+<!--        <item-->
+<!--                android:id="@+id/nav_slideshow"-->
+<!--                android:icon="@drawable/ic_menu_slideshow"-->
+<!--                android:title="聯絡電話"/>-->
         <item
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="聯絡地址"/>
+                android:title="店家資訊"/>
     </group>
 
     <item android:title="Communicate">

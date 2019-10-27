@@ -24,11 +24,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
-import com.firebase.client.Firebase
-
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.FirebaseError;
-
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LocationListener,
@@ -275,9 +270,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         memberMap.put(MemberData.KEY_NAME, name)
         memberMap.put(MemberData.KEY_PHOTO, photo)
         memberMap.put(MemberData.KEY_POINT, "10000")
+        if (MySharedPrefernces.getUserName(this).equals("")){
+            MySharedPrefernces.saveUserName(this,"09123456789")
+            memberMap.put(MemberData.KEY_PHONE, "09123456789")
+
+        }else{
+            memberMap.put(MemberData.KEY_PHONE, MySharedPrefernces.getUserName(this))
+
+        }
 //        memberMap.put(MemberData.KEY_MEMBERLV, MemberData.MEMBER_LV_1)
         mfiebaselibsClass!!.setFireBaseDB(MemberData.KEY_URL, Key, memberMap)
-
 
     }
     fun checkPermission() {

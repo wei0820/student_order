@@ -16,6 +16,7 @@ public class MemberData {
 
     public static final String KEY_LOCATION = "location";
     public static final String KEY_POINT = "point";
+    public static final String KEY_PHONE= "phone";
 
 
     public static final String MEMBER_LV_1= "一般會員";
@@ -30,8 +31,8 @@ public class MemberData {
 
     public String id;
     public String photo;
-    public String memberlv;
     public String name;
     public String point;
+    public String phone;
 
 }

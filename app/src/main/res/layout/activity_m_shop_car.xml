@@ -10,49 +10,103 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:layout_weight="6"
             >
         <LinearLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                ></LinearLayout>
+                >
+            <TextView
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
+                    ></TextView>
+        </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                ></LinearLayout>
+                >
+            <TextView
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="聯絡電話"
+                    ></TextView>
+
+        </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                ></LinearLayout>
+                >
+            <TextView
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="菜單"
+                    ></TextView>
+        </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                ></LinearLayout>
+                >
+            <TextView
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="數量"
+                    ></TextView>
+        </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                ></LinearLayout>
+                >
+            <TextView
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="金額"
+                    ></TextView>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:layout_weight="5"
             >
         <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 ></ListView>
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="9"
+            >
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="確認送出"
+                ></Button>
 
     </LinearLayout>
 </LinearLayout>

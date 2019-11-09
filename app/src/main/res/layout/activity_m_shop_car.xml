@@ -25,6 +25,15 @@
                     android:layout_height="wrap_content"
                     android:text="姓名"
                     ></TextView>
+            <TextView
+                    android:id="@+id/nametext"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
+                    ></TextView>
         </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
@@ -38,6 +47,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="聯絡電話"
+                    ></TextView>
+            <TextView
+                    android:id="@+id/phone"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
                     ></TextView>
 
         </LinearLayout>
@@ -54,6 +72,12 @@
                     android:layout_height="wrap_content"
                     android:text="菜單"
                     ></TextView>
+            <Spinner
+                    android:layout_marginLeft="12dp"
+                    android:id="@+id/spiner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    ></Spinner>
         </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
@@ -68,6 +92,15 @@
                     android:layout_height="wrap_content"
                     android:text="數量"
                     ></TextView>
+            <TextView
+                    android:id="@+id/num"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
+                    ></TextView>
         </LinearLayout>
         <LinearLayout
                 android:layout_height="match_parent"
@@ -81,6 +114,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="金額"
+                    ></TextView>
+            <TextView
+                    android:id="@+id/price"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
                     ></TextView>
         </LinearLayout>
         <LinearLayout

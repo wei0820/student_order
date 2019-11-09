@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var mfiebaselibsClass: MfiebaselibsClass? = null
     lateinit var mOrderBtn : RelativeLayout
+    lateinit var mShop:RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mfiebaselibsClass = MfiebaselibsClass(this, this)
@@ -142,6 +143,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intent.setClass(this,FastAddActivity::class.java)
             startActivity(intent)
 
+        }
+        mShop = findViewById(R.id.shop)
+        mShop.setOnClickListener {
+            
         }
     }
 

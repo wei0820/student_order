@@ -146,7 +146,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         mShop = findViewById(R.id.shop)
         mShop.setOnClickListener {
-            
+            val intent  =Intent()
+            intent.setClass(this,mShopCarActivity::class.java)
+            startActivity(intent)
         }
     }
 

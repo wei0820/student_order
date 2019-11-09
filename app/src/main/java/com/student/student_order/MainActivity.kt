@@ -146,6 +146,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         mShop = findViewById(R.id.shop)
         mShop.setOnClickListener {
+            if(  MySharedPrefernces.getId(this).isEmpty()){
+                Toast.makeText(this,"請先登入",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val intent  =Intent()
             intent.setClass(this,mShopCarActivity::class.java)
             startActivity(intent)

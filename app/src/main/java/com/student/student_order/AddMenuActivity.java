@@ -24,6 +24,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private EditText editText;
     private TextView price;
     private Integer mPrice;
+    private Button mEdtBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
         editText = findViewById(R.id.num);
         price = findViewById(R.id.price);
-
+        mEdtBtn = findViewById(R.id.edtbtn);
         getData();
 
         switchCompat1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -167,11 +168,18 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
             }
         });
+
+        mEdtBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                price.setText(String.valueOf(mPrice*Integer.parseInt(editText.getText().toString())));
+            }
+        });
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("Jack",mPrice+"");
-//                Calendar mCal = Calendar.getInstance();
+//                Calendar mCal = CalendaretInstance();
 //                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
 //
 //                // kk:24小時制, hh:12小時制

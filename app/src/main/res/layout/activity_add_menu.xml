@@ -138,15 +138,29 @@
                 android:text="餐點數量："
                 android:textSize="28dp"
                 ></TextView>
-        <EditText
-                android:inputType="number"
-                android:singleLine="true"
-                android:id="@+id/num"
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="輸入數量"
-                android:textSize="20dp"
-                ></EditText>
+                >
+            <EditText
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:id="@+id/num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="輸入數量"
+                    android:textSize="20dp"
+                    ></EditText>
+            <Button
+                    android:id="@+id/edtbtn"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="確認"
+                    ></Button>
+        </LinearLayout>
 
         <TextView
                 android:layout_width="wrap_content"

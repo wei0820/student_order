@@ -36,7 +36,7 @@ class mShopCarActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_m_shop_car)
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
+        mArray = MySharedPrefernces.getArrayList(this)
         initView()
         setMember()
 

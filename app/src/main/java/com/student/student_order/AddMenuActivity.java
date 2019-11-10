@@ -10,6 +10,7 @@ import android.widget.*;
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass;
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -25,6 +26,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private TextView price;
     private Integer mPrice;
     private Button mEdtBtn;
+    private ArrayList<String> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +181,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
             @Override
             public void onClick(View view) {
                 Log.d("Jack",mPrice+"");
+                String s = mNameText.getText().toString()+","+editText.getText().toString()+","+
+                        String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
+                arrayList.add(s);
+                MySharedPrefernces.saveArrayList(getApplicationContext(),arrayList);
 //                Calendar mCal = CalendaretInstance();
 //                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
 //

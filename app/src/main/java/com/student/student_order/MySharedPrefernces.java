@@ -276,7 +276,7 @@ public class MySharedPrefernces {
     public  static  final  String KEY_SHOP_ARRAY = "shoparray";
 
 
-    public void saveArrayList(Context context,ArrayList<String> list){
+    public static void saveArrayList(Context context,ArrayList<String> list){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
@@ -286,7 +286,7 @@ public class MySharedPrefernces {
 
     }
 
-    public ArrayList<String> getArrayList(Context context){
+    public static ArrayList<String> getArrayList(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Gson gson = new Gson();
         String json = prefs.getString(KEY_SHOP_ARRAY, null);

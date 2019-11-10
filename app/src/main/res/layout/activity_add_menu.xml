@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -132,22 +132,46 @@
                 android:text=""
                 android:textSize="28dp"
         ></TextView>
-        <Button
-                android:id="@+id/button1"
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="送出"
-        ></Button>
-        <Button
-                android:id="@+id/button2"
-
+                android:text="餐點數量："
+                android:textSize="28dp"
+                ></TextView>
+        <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="輸入數量"
                 android:textSize="20dp"
-                android:text="重新點餐"
-        ></Button>
+                ></EditText>
 
-
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="總價錢:"
+                android:textSize="28dp"
+                ></TextView>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="28dp"
+                ></TextView>
     </LinearLayout>
-</RelativeLayout>
+
+    <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="送到購物車"
+            ></Button>
+    <Button
+            android:id="@+id/button2"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="重新點餐"
+            ></Button>
+</LinearLayout>

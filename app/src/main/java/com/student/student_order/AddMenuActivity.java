@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass;
@@ -20,6 +21,9 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private String name;
     private LinearLayout layout,layout2,layout3;
     MfiebaselibsClass mfiebaselibsClass;
+    private EditText editText;
+    private TextView price;
+    private Integer mPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,9 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
         switchCompat5 = findViewById(R.id.switch5);
         switchCompat6 = findViewById(R.id.switch6);
         switchCompat7 = findViewById(R.id.switch7);
+
+        editText = findViewById(R.id.num);
+        price = findViewById(R.id.price);
 
         getData();
 
@@ -163,18 +170,19 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar mCal = Calendar.getInstance();
-                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-
-                // kk:24小時制, hh:12小時制
-
-                HashMap<String,String> hashMap = new HashMap<>();
-                hashMap.put("id",MySharedPrefernces.getId(AddMenuActivity.this));
-                hashMap.put("time",System.currentTimeMillis()+"");
-                hashMap.put("food",mNameText.getText().toString());
-                mfiebaselibsClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(AddMenuActivity.this), s.toString(), hashMap);
-                Toast.makeText(AddMenuActivity.this,"送出訂單,請到歷史紀錄觀看",Toast.LENGTH_SHORT).show();
-                finish();
+                Log.d("Jack",mPrice+"");
+//                Calendar mCal = Calendar.getInstance();
+//                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+//
+//                // kk:24小時制, hh:12小時制
+//
+//                HashMap<String,String> hashMap = new HashMap<>();
+//                hashMap.put("id",MySharedPrefernces.getId(AddMenuActivity.this));
+//                hashMap.put("time",System.currentTimeMillis()+"");
+//                hashMap.put("food",mNameText.getText().toString());
+//                mfiebaselibsClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(AddMenuActivity.this), s.toString(), hashMap);
+//                Toast.makeText(AddMenuActivity.this,"送出訂單,請到歷史紀錄觀看",Toast.LENGTH_SHORT).show();
+//                finish();
 
             }
         });
@@ -189,6 +197,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
     private static final String TAG = "AddMenuActivity";
     private void getData() {
+        mPrice = getIntent().getIntExtra("price",0);
         name = getIntent().getStringExtra("name");
         int i = getIntent().getIntExtra("menu", 0);
         String type = getIntent().getStringExtra("type");

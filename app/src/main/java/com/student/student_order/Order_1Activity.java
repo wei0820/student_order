@@ -28,8 +28,15 @@ public class Order_1Activity extends AppCompatActivity {
             "蘋果紅茶 大 ","蘋果紅茶 小 ","柳橙汁 大 ","柳橙汁 中 ","柳橙汁 小 ",
             "檸檬汁 大 ","檸檬汁 中","檸檬汁 小", "蘋果汁 大 ","蘋果汁 中","蘋果汁 小 ", "可樂 ","雪碧","鮮奶茶 大","鮮奶茶 小","玉米濃湯 大","玉米濃湯 小"};
     String[] menu10 = new String[]{"蘑菇","黑胡椒","肉燥","咖哩","韓國肉醬","義大利肉醬","奶油白醬 ","三杯雞","宮保雞丁","川味麻婆 "};
+
+    Integer [] i2 =new Integer[]{25,30,30,30,30,30,30,30,30,35,35,35,35,35,45,45,45,45};
+    Integer [] i1 =new Integer[]{20,25,25,30,25,25,30,30,30,35,35,35,35,35,45,45,45,45,40,40,45,45,50,55};
+    Integer [] i4 =new Integer[]{20,25,25,25, 25,25,25,25,25,30,30,30,30,35,35,35,35,45};
+    Integer [] i9 =new Integer[]{15,10,15,10,20,15,10,20,15,10,20,15,20,15,20,15,10,20,15,10,20,15,10,20,20,25,20,30,20};
+
     ListAdapter adapter;
     private  String[] mString = new String[]{};
+    private  Integer[] price = new Integer[]{};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,7 @@ public class Order_1Activity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu",lay);
                 bundle.putString("name",mString[i]);
+                bundle.putInt("price",price[i]);
                 bundle.putString("type",type);
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),AddMenuActivity.class);
@@ -64,18 +72,19 @@ public class Order_1Activity extends AppCompatActivity {
            switch (lay){
                case 0:
                    mString = menu2;
+                   price = i2;
                    break;
                case 1:
                    mString = menu1;
-
+                   price = i1;
                    break;
                case 2:
                    mString = menu4;
-
+                   price = i4;
                    break;
                case 3:
                    mString = menu9;
-
+                   price = i9;
                    break;
 
            }

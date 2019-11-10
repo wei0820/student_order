@@ -7,10 +7,10 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
-import com.google.gson.Gson;
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass;
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -22,6 +22,11 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private String name;
     private LinearLayout layout,layout2,layout3;
     MfiebaselibsClass mfiebaselibsClass;
+    private EditText editText;
+    private TextView price;
+    private Integer mPrice;
+    private Button mEdtBtn;
+    private ArrayList<String> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,9 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
         switchCompat6 = findViewById(R.id.switch6);
         switchCompat7 = findViewById(R.id.switch7);
 
+        editText = findViewById(R.id.num);
+        price = findViewById(R.id.price);
+        mEdtBtn = findViewById(R.id.edtbtn);
         getData();
 
         switchCompat1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -162,21 +170,33 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
             }
         });
+
+        mEdtBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                price.setText(String.valueOf(mPrice*Integer.parseInt(editText.getText().toString())));
+            }
+        });
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar mCal = Calendar.getInstance();
-                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-
-                // kk:24小時制, hh:12小時制
-
-                HashMap<String,String> hashMap = new HashMap<>();
-                hashMap.put("id",MySharedPrefernces.getId(AddMenuActivity.this));
-                hashMap.put("time",System.currentTimeMillis()+"");
-                hashMap.put("food",mNameText.getText().toString());
-                mfiebaselibsClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(AddMenuActivity.this), s.toString(), hashMap);
-                Toast.makeText(AddMenuActivity.this,"送出訂單,請到歷史紀錄觀看",Toast.LENGTH_SHORT).show();
-                finish();
+                Log.d("Jack",mPrice+"");
+                String s = mNameText.getText().toString()+","+editText.getText().toString()+","+
+                        String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
+                arrayList.add(s);
+                MySharedPrefernces.saveArrayList(getApplicationContext(),arrayList);
+//                Calendar mCal = CalendaretInstance();
+//                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+//
+//                // kk:24小時制, hh:12小時制
+//
+//                HashMap<String,String> hashMap = new HashMap<>();
+//                hashMap.put("id",MySharedPrefernces.getId(AddMenuActivity.this));
+//                hashMap.put("time",System.currentTimeMillis()+"");
+//                hashMap.put("food",mNameText.getText().toString());
+//                mfiebaselibsClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(AddMenuActivity.this), s.toString(), hashMap);
+//                Toast.makeText(AddMenuActivity.this,"送出訂單,請到歷史紀錄觀看",Toast.LENGTH_SHORT).show();
+//                finish();
 
             }
         });
@@ -191,6 +211,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
     private static final String TAG = "AddMenuActivity";
     private void getData() {
+        mPrice = getIntent().getIntExtra("price",0);
         name = getIntent().getStringExtra("name");
         int i = getIntent().getIntExtra("menu", 0);
         String type = getIntent().getStringExtra("type");

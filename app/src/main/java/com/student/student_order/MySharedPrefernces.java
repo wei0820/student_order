@@ -2,7 +2,13 @@ package com.student.student_order;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
 public class MySharedPrefernces {
     public static final String NAME = "MySharedPrefernces";
@@ -266,5 +272,25 @@ public class MySharedPrefernces {
     public static String getMyCardTime2(Context context) {
         SharedPreferences sp = context.getSharedPreferences(NAME, Activity.MODE_PRIVATE);
         return sp.getString(KEY_MYCARD_TIME_2, "");
+    }
+    public  static  final  String KEY_SHOP_ARRAY = "shoparray";
+
+
+    public void saveArrayList(Context context,ArrayList<String> list){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(KEY_SHOP_ARRAY, json);
+        editor.apply();
+
+    }
+
+    public ArrayList<String> getArrayList(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = prefs.getString(KEY_SHOP_ARRAY, null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        return gson.fromJson(json, type);
     }
 }

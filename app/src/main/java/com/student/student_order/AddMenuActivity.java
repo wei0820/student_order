@@ -183,6 +183,12 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                 Log.d("Jack",mPrice+"");
                 String s = mNameText.getText().toString()+","+editText.getText().toString()+","+
                         String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
+
+                if(MySharedPrefernces.getArrayList(getApplicationContext())!=null){
+                    arrayList = MySharedPrefernces.getArrayList(getApplicationContext());
+                }else {
+                    arrayList = new ArrayList<>();
+                }
                 arrayList.add(s);
                 MySharedPrefernces.saveArrayList(getApplicationContext(),arrayList);
 //                Calendar mCal = CalendaretInstance();

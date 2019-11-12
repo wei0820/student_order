@@ -10,6 +10,14 @@ import android.view.WindowManager
 import android.widget.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+
+
+
+
 
 
 
@@ -23,10 +31,11 @@ class mShopCarActivity : AppCompatActivity() {
     lateinit var mPriceTextView: TextView
     var mArray = ArrayList<String>()
     lateinit var mSendBtn: Button
-    lateinit var mListView: ListView
+    lateinit var mListView: QQListView
     lateinit var mNumBtn :Button
     var pirceArray :Int = 0
     var priceTotal =0
+     var mAdapter: BaseAdapter? = null
 
 
     private var food : ArrayAdapter<String>? =null
@@ -50,36 +59,34 @@ class mShopCarActivity : AppCompatActivity() {
         mNumTextView = findViewById(R.id.num)
         mPriceTextView = findViewById(R.id.price)
         mSendBtn = findViewById(R.id.send)
-        mListView = findViewById(R.id.listview)
+        mListView = findViewById(R.id.id_listview)
         mNumBtn = findViewById(R.id.numbtn)
-        food = ArrayAdapter(
-            this, android.R.layout.simple_list_item_1, mArray
-        )
+//        food = ArrayAdapter(
+//            this, android.R.layout.simple_list_item_1, mArray
+//        )
 
-        mListView.adapter = food
-        val lunch = arrayListOf("雞腿飯", "魯肉飯", "排骨飯", "水餃", "陽春麵")
-        val pirce = arrayListOf(50, 60, 70, 80,90)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, lunch)
-        mSpinner.adapter = adapter
-
-        mSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                adapterView: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                Toast.makeText(
-                    this@mShopCarActivity,
-                    "你選的是" + lunch[position],
-                    Toast.LENGTH_SHORT
-                ).show()
-                mItem = lunch[position]
-                pirceArray = pirce[position]
+        mAdapter = object : ArrayAdapter<String>(
+            this,
+            -1, mArray
+        ) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                var convertView = convertView
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
+                }
+                val tv = convertView!!.findViewById(R.id.id_text) as TextView
+                tv.text = getItem(position)
+                return convertView
             }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {}
+        }
+        mListView.setAdapter(mAdapter)
+        mListView.setOnItemRightViewClickListener(QQListView.OnItemRightViewClickListener { position, view ->
+            Log.d("TAG", "remove item")
+            mArray.removeAt(position)
+            mAdapter!!.notifyDataSetChanged()
+            MySharedPrefernces.saveArrayList(this,mArray)
         })
+
         mNumBtn.setOnClickListener {
             priceTotal = pirceArray * mNumTextView.text.toString().toInt()
             mPriceTextView.text =  priceTotal.toString()
@@ -92,26 +99,7 @@ class mShopCarActivity : AppCompatActivity() {
             food!!.notifyDataSetChanged()
 
         }
-        mListView.setOnItemLongClickListener(AdapterView.OnItemLongClickListener { arg0, arg1, pos, id ->
-            // TODO Auto-generated method stub
-            val show = AlertDialog.Builder(this)
-                .setTitle("訂單")//設定視窗標題
-                .setMessage("是否刪除該筆訂單")//設定顯示的文字
-                .setPositiveButton(
-                    "是"
-                ) { dialog, which ->
-                    mArray.removeAt(pos)
-                    food!!.notifyDataSetChanged()
-                    dialog.dismiss()
-                }//設定結束的子視窗
-                .setNegativeButton("否") { dialog, which ->
-                    dialog.dismiss()
 
-                }
-                .show()//呈現對話視窗
-
-            true
-        })
 
     }
 

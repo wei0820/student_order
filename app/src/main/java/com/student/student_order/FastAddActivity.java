@@ -9,8 +9,14 @@ import android.widget.*;
 public class FastAddActivity extends AppCompatActivity {
     private ListView mListView;
     ListAdapter adapter;
-        String[] parents = new String[]{"三明治",
-            "漢堡","蛋餅","河粉","點心","吐司類","中式類","套餐類","飲料類","鐵板類"};
+        String[] parents = new String[]{"蘑菇豬排 65",
+                "黑胡椒牛肉 65" ,
+                "咖哩雞肉 65",
+                "義大利肉醬 75" ,
+                "德國香腸 75" ,
+                "義式奶青 75",
+                "厚切培根牛肉堡 90"};
+    int[] price = new int[]{65, 65 , 65, 75 , 75 ,75,90};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +32,10 @@ public class FastAddActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu",i);
                 bundle.putString("name",parents[i]);
+                bundle.putInt("price",price[i]);
                 bundle.putString("type","fast");
                 intent.putExtras(bundle);
-                intent.setClass(getApplication(),Order_1Activity.class);
+                intent.setClass(getApplication(),AddMenuActivity.class);
                 startActivity(intent);
             }
         });

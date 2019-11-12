@@ -61,7 +61,10 @@ class mShopCarActivity : AppCompatActivity() {
         mprice.forEach {
             total = total + it.toInt()
             Log.d("Jack", total.toString())
+
         }
+        mPriceTextView.text = total.toString()
+
         total = 0
 
     }
@@ -103,7 +106,6 @@ class mShopCarActivity : AppCompatActivity() {
 
         mNumBtn.setOnClickListener {
             priceTotal = pirceArray * mNumTextView.text.toString().toInt()
-            mPriceTextView.text =  priceTotal.toString()
 
         }
         mSendBtn.setOnClickListener {

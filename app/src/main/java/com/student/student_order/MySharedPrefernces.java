@@ -293,4 +293,27 @@ public class MySharedPrefernces {
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
         return gson.fromJson(json, type);
     }
+
+
+
+    public  static  final  String KEY_SHOP_PRICE = "shopprice";
+
+
+    public static void savePriceArrayList(Context context,ArrayList<String> list){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(KEY_SHOP_PRICE, json);
+        editor.apply();
+
+    }
+
+    public static ArrayList<String> getPriceArrayList(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = prefs.getString(KEY_SHOP_PRICE, null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
 }

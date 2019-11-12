@@ -30,6 +30,8 @@ class mShopCarActivity : AppCompatActivity() {
     lateinit var mNumTextView: EditText
     lateinit var mPriceTextView: TextView
     var mArray = ArrayList<String>()
+    var mprice = ArrayList<String>()
+
     lateinit var mSendBtn: Button
     lateinit var mListView: QQListView
     lateinit var mNumBtn :Button
@@ -37,6 +39,8 @@ class mShopCarActivity : AppCompatActivity() {
     var priceTotal =0
      var mAdapter: BaseAdapter? = null
 
+    var num :String = ""
+    var total :Int = 0
 
     private var food : ArrayAdapter<String>? =null
     var mItem :String = ""
@@ -48,7 +52,20 @@ class mShopCarActivity : AppCompatActivity() {
         mArray = MySharedPrefernces.getArrayList(this)
         initView()
         setMember()
+        getPrice()
 
+
+    }
+    fun getPrice(){
+        mprice = MySharedPrefernces.getPriceArrayList(this)
+        mprice.forEach {
+            total = total + it.toInt()
+            Log.d("Jack", total.toString())
+
+        }
+        mPriceTextView.text = total.toString()
+
+        total = 0
 
     }
 
@@ -61,9 +78,6 @@ class mShopCarActivity : AppCompatActivity() {
         mSendBtn = findViewById(R.id.send)
         mListView = findViewById(R.id.id_listview)
         mNumBtn = findViewById(R.id.numbtn)
-//        food = ArrayAdapter(
-//            this, android.R.layout.simple_list_item_1, mArray
-//        )
 
         mAdapter = object : ArrayAdapter<String>(
             this,
@@ -83,13 +97,15 @@ class mShopCarActivity : AppCompatActivity() {
         mListView.setOnItemRightViewClickListener(QQListView.OnItemRightViewClickListener { position, view ->
             Log.d("TAG", "remove item")
             mArray.removeAt(position)
+            mprice.removeAt(position)
             mAdapter!!.notifyDataSetChanged()
             MySharedPrefernces.saveArrayList(this,mArray)
+            MySharedPrefernces.savePriceArrayList(this,mprice)
+            getPrice()
         })
 
         mNumBtn.setOnClickListener {
             priceTotal = pirceArray * mNumTextView.text.toString().toInt()
-            mPriceTextView.text =  priceTotal.toString()
 
         }
         mSendBtn.setOnClickListener {
@@ -104,7 +120,6 @@ class mShopCarActivity : AppCompatActivity() {
     }
 
     fun setMember() {
-
         mNameText.text = MySharedPrefernces.getUserId(this)
         mPhoneText.text = MySharedPrefernces.getUserName(this)
     }

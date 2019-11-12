@@ -27,6 +27,8 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private Integer mPrice;
     private Button mEdtBtn;
     private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayList<String> priceList = new ArrayList<>();
+    private String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
         price = findViewById(R.id.price);
         mEdtBtn = findViewById(R.id.edtbtn);
         getData();
-
+        mNameText.setText(title+name);
         switchCompat1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -64,7 +66,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
                 }
 
-                mNameText.setText(name + add);
+                mNameText.setText(title+name + add);
 
             }
         });
@@ -79,7 +81,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加洋蔥",Toast.LENGTH_SHORT).show();
                     add2 = "不加洋蔥";
                 }
-                mNameText.setText(name + add +add2);
+                mNameText.setText(title+name + add +add2);
 
             }
         });
@@ -93,7 +95,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加番茄醬",Toast.LENGTH_SHORT).show();
                     add3 = "不加番茄醬";
                 }
-                mNameText.setText(name + add +add2 +add3);
+                mNameText.setText(title+name + add +add2 +add3);
 
             }
         });
@@ -108,7 +110,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     add4 = "不加醬油膏";
                 }
 
-                mNameText.setText(name + add4);
+                mNameText.setText(title+name + add4);
 
             }
         });
@@ -123,10 +125,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     add5 = "不加泰式酸辣醬";
                 }
                 if (add4!=null){
-                    mNameText.setText(name + add4 +add5 );
+                    mNameText.setText(title+name + add4 +add5 );
 
                 }else {
-                    mNameText.setText(name+add5 );
+                    mNameText.setText(title+name+add5 );
 
                 }
 
@@ -146,10 +148,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                 }
 
                 if (add4!=null&&add5!=null){
-                    mNameText.setText(name + add4 +add5 +add6 );
+                    mNameText.setText(title+name + add4 +add5 +add6 );
 
                 }else {
-                    mNameText.setText(name+add6);
+                    mNameText.setText(title+name+add6);
 
                 }
 
@@ -166,7 +168,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加冰塊",Toast.LENGTH_SHORT).show();
                     add7 = "不加冰塊";
                 }
-                mNameText.setText(name + add7);
+                mNameText.setText(title+name + add7);
 
             }
         });
@@ -180,17 +182,25 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Jack",mPrice+"");
-                String s = mNameText.getText().toString()+","+editText.getText().toString()+","+
-                        String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
+                String s = "品項:"+mNameText.getText().toString()+","+"數量:"+editText.getText().toString()+"," +"總價錢:" +String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
 
                 if(MySharedPrefernces.getArrayList(getApplicationContext())!=null){
                     arrayList = MySharedPrefernces.getArrayList(getApplicationContext());
                 }else {
                     arrayList = new ArrayList<>();
                 }
+
+                if(MySharedPrefernces.getPriceArrayList(getApplicationContext())!=null){
+                    priceList = MySharedPrefernces.getPriceArrayList(getApplicationContext());
+                }else {
+                    priceList = new ArrayList<>();
+                }
                 arrayList.add(s);
+                priceList.add(String.valueOf(mPrice*Integer.parseInt(editText.getText().toString())));
                 MySharedPrefernces.saveArrayList(getApplicationContext(),arrayList);
+                MySharedPrefernces.savePriceArrayList(getApplicationContext(),priceList);
+
+                Toast.makeText(getApplicationContext(),"已送至購物車",Toast.LENGTH_SHORT).show();
 //                Calendar mCal = CalendaretInstance();
 //                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
 //
@@ -219,6 +229,11 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private void getData() {
         mPrice = getIntent().getIntExtra("price",0);
         name = getIntent().getStringExtra("name");
+          if(getIntent().getStringExtra("title")!=null){
+            title = getIntent().getStringExtra("title");
+        }else {
+              title = "";
+          }
         int i = getIntent().getIntExtra("menu", 0);
         String type = getIntent().getStringExtra("type");
         if (type.equals("fast")){

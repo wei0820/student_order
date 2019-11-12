@@ -60,7 +60,6 @@ class mShopCarActivity : AppCompatActivity() {
         mprice = MySharedPrefernces.getPriceArrayList(this)
         mprice.forEach {
             total = total + it.toInt()
-            Log.d("Jack", total.toString())
 
         }
         mPriceTextView.text = total.toString()

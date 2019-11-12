@@ -37,6 +37,7 @@ public class Order_1Activity extends AppCompatActivity {
     ListAdapter adapter;
     private  String[] mString = new String[]{};
     private  Integer[] price = new Integer[]{};
+    private  String mTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +57,7 @@ public class Order_1Activity extends AppCompatActivity {
                 bundle.putString("name",mString[i]);
                 bundle.putInt("price",price[i]);
                 bundle.putString("type",type);
+                bundle.putString("title",name);
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),AddMenuActivity.class);
                 startActivity(intent);

@@ -61,9 +61,6 @@ class mShopCarActivity : AppCompatActivity() {
         mSendBtn = findViewById(R.id.send)
         mListView = findViewById(R.id.id_listview)
         mNumBtn = findViewById(R.id.numbtn)
-//        food = ArrayAdapter(
-//            this, android.R.layout.simple_list_item_1, mArray
-//        )
 
         mAdapter = object : ArrayAdapter<String>(
             this,
@@ -104,7 +101,6 @@ class mShopCarActivity : AppCompatActivity() {
     }
 
     fun setMember() {
-
         mNameText.text = MySharedPrefernces.getUserId(this)
         mPhoneText.text = MySharedPrefernces.getUserName(this)
     }

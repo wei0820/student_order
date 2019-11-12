@@ -72,6 +72,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                        android:visibility="gone"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
@@ -92,6 +93,7 @@
                             ></Spinner>
                 </LinearLayout>
                 <LinearLayout
+                        android:visibility="gone"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
@@ -133,7 +135,7 @@
                             android:textSize="18dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="金額"
+                            android:text="總金額"
                             ></TextView>
                     <TextView
                             android:id="@+id/price"
@@ -142,10 +144,11 @@
                             android:textSize="18dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="姓名"
                             ></TextView>
                 </LinearLayout>
                 <LinearLayout
+                        android:visibility="gone"
+
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"

@@ -69,13 +69,7 @@ class mShopCarActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(
-                    this@mShopCarActivity,
-                    "你選的是" + lunch[position],
-                    Toast.LENGTH_SHORT
-                ).show()
-                mItem = lunch[position]
-                pirceArray = pirce[position]
+
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}

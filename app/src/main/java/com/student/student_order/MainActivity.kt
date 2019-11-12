@@ -150,6 +150,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this,"請先登入",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if(  MySharedPrefernces.getArrayList(this)==null){
+                Toast.makeText(this,"請先購物",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(  MySharedPrefernces.getPriceArrayList(this)==null){
+            Toast.makeText(this,"請先購物",Toast.LENGTH_SHORT).show()
+            return@setOnClickListener
+        }
             val intent  =Intent()
             intent.setClass(this,mShopCarActivity::class.java)
             startActivity(intent)

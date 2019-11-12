@@ -27,6 +27,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private Integer mPrice;
     private Button mEdtBtn;
     private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayList<String> priceList = new ArrayList<>();
     private String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,16 +182,24 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = mNameText.getText().toString()+","+editText.getText().toString()+","+
-                        String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
+                String s = "品項:"+mNameText.getText().toString()+","+"數量:"+editText.getText().toString()+"," +"總價錢:" +String.valueOf(mPrice*Integer.parseInt(editText.getText().toString()));
 
                 if(MySharedPrefernces.getArrayList(getApplicationContext())!=null){
                     arrayList = MySharedPrefernces.getArrayList(getApplicationContext());
                 }else {
                     arrayList = new ArrayList<>();
                 }
+
+                if(MySharedPrefernces.getPriceArrayList(getApplicationContext())!=null){
+                    priceList = MySharedPrefernces.getPriceArrayList(getApplicationContext());
+                }else {
+                    priceList = new ArrayList<>();
+                }
                 arrayList.add(s);
+                priceList.add(String.valueOf(mPrice*Integer.parseInt(editText.getText().toString())));
                 MySharedPrefernces.saveArrayList(getApplicationContext(),arrayList);
+                MySharedPrefernces.savePriceArrayList(getApplicationContext(),priceList);
+
                 Toast.makeText(getApplicationContext(),"已送至購物車",Toast.LENGTH_SHORT).show();
 //                Calendar mCal = CalendaretInstance();
 //                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());

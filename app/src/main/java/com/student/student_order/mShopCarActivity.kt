@@ -84,6 +84,7 @@ class mShopCarActivity : AppCompatActivity() {
             Log.d("TAG", "remove item")
             mArray.removeAt(position)
             mAdapter!!.notifyDataSetChanged()
+            MySharedPrefernces.saveArrayList(this,mArray)
         })
 
         mNumBtn.setOnClickListener {

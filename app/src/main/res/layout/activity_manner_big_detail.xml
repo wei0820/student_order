@@ -52,7 +52,7 @@
                 android:text="品項"
                 android:textSize="20sp" />
 
-        <Spinner
+        <TextView
                 android:id="@+id/spinner"
                 android:layout_width="323dp"
                 android:layout_height="wrap_content" />
@@ -71,7 +71,7 @@
             android:text="尺寸"
             android:textSize="20sp" />
 
-        <Spinner
+        <TextView
             android:id="@+id/spinner2"
             android:layout_width="323dp"
             android:layout_height="wrap_content" />
@@ -241,7 +241,7 @@
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="送出"
+            android:text="更新"
             ></Button>
 
     <Button

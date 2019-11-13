@@ -8,15 +8,17 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.format.DateFormat
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.widget.*
+import com.google.gson.Gson
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import java.io.File
 import java.util.*
 
 
-class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallback {
+class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCallback {
     override fun getUserLogoutState(p0: Boolean) {
     }
 
@@ -63,7 +65,7 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     lateinit var phone: DisplayMetrics
     lateinit var mAddressEdt: EditText
     lateinit var mCheckBtn: Button
-    lateinit var mSpinner: Spinner
+    lateinit var mSpinner: TextView
     lateinit var mStartbtn: Button
     lateinit var mEndbtn: Button
     lateinit var mPriceEdt: EditText
@@ -79,29 +81,39 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     var mPhoneString :String = ""
     var mMessagerString : String = ""
     lateinit var mFirebselibClass: MfiebaselibsClass
-    lateinit var mSpinner2: Spinner
+    lateinit var mSpinner2: TextView
     val mAppNames = arrayOf("0","1","2","3")
      var oldFile: File? = null
-    var item :String = ""
-    var size :String = ""
+    var date: String = ""
+    var item: String = ""
+    var size: String= ""
+    var price: String = ""
+    var name: String = ""
     private val filePath: String? = null
     lateinit var  mSizeLay :LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mFirebselibClass = MfiebaselibsClass(this, this@BigMannerActivity)
+        mFirebselibClass = MfiebaselibsClass(this, this@BigMannerDetailActivity)
 
-        setContentView(R.layout.activity_manner_big)
+        setContentView(R.layout.activity_manner_big_detail)
         phone = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(phone)
+        var  s = intent.extras.getString("data")
+        var  gson = Gson();
+        var itemData :ItemData = gson.fromJson(s,ItemData::class.java)
+        Log.d("Jack",itemData.name)
+        Log.d("Jack",itemData.price)
+        date = itemData.date
+        name = itemData.name
+        item = itemData.item
+        price = itemData.price
+        size = itemData.size
+
 
         initLayout()
     }
 
     fun initLayout() {
-        var morderbtn :Button = findViewById(R.id.orderbtn)
-        morderbtn.setOnClickListener {
-            startActivity(Intent(this,OrderManagerActivity::class.java))
-        }
         mSizeLay = findViewById(R.id.sizelay);
         mAddressEdt = findViewById(R.id.editText)
         mCheckBtn = findViewById(R.id.checkbtn)
@@ -113,64 +125,13 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mPhoneEdt = findViewById(R.id.editText4)
         mMessageEdt = findViewById(R.id.editText5)
         mSendBtn = findViewById(R.id.send)
-        val searchSortSpinnerData = arrayOf("漢堡","三明治","蛋餅","飲料")
-
-        val adapter = ArrayAdapter(
-                this, // Context
-                android.R.layout.simple_spinner_item, // Layout
-                searchSortSpinnerData // Array
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-
-        // Finally, data bind the spinner object with dapter
-        mSpinner.adapter = adapter;
-
-        // Set an on item selected listener for spinner object
-        mSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData[position], Toast.LENGTH_SHORT).show()
-                mSelectType  = mAppNames[position]
-                item = searchSortSpinnerData[position]
-                if (position == 3){
-                    mSizeLay.visibility = View.VISIBLE
-                }else{
-                    mSizeLay.visibility = View.GONE
-
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Another interface callback
-            }
-        }
         mCheckBtn.setOnClickListener(this)
         mStartbtn.setOnClickListener(this)
         mEndbtn.setOnClickListener(this)
         mPhotoButtton.setOnClickListener(this)
         mSendBtn.setOnClickListener(this)
-        val searchSortSpinnerData2 =arrayOf(
-               "小","中","大")
 
         mSpinner2 = findViewById(R.id.spinner2)
-        mSizeLay.visibility = View.GONE
-        val adapter2 = ArrayAdapter(
-                this, // Context
-                android.R.layout.simple_spinner_item, // Layout
-                searchSortSpinnerData2 // Array
-        )
-        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-
-        // Finally, data bind the spinner object with dapter
-        mSpinner2.adapter = adapter2;
-        mSpinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                size = searchSortSpinnerData2[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Another interface callback
-            }
-        }
     }
 
     @SuppressLint("NewApi")
@@ -210,17 +171,18 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
     fun sendData(){
         mMessagerString = mMessageEdt.text.toString()
+        mPhoneString = mPhoneEdt.text.toString()
         if(!mMessagerString.isEmpty()
-                &&!mSelectType.isEmpty()
                 &&!mPriceEdt.text.toString().isEmpty()){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
-//                addData(item
-//                        ,size
-//                        ,"23333",
-//                       "100")
+                update(date,
+                    item
+                        ,size
+                        ,mMessagerString,
+                       mPhoneString)
                 dialog.dismiss()
                 this.finish()
             })
@@ -244,20 +206,18 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
 
     }
-    fun addData(item:String, size:String,name:String, price:String){
-        if (this.size.isEmpty()){
-            this.size = "0"
-        }
+    fun update(date :String,item:String, size:String,name:String, price:String){
+
         val mCal = Calendar.getInstance()
         val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
         var mHasMap = HashMap<String, String>()
         var key = MySharedPrefernces.getId(this) + s
-        mHasMap.put(ResponseData.KEY_DATE,key)
+        mHasMap.put(ResponseData.KEY_DATE,date)
         mHasMap.put(ResponseData.KEY_SIZE,size)
         mHasMap.put(ResponseData.KEY_ITEM,item)
         mHasMap.put(ResponseData.KEY_NAME,name)
         mHasMap.put(ResponseData.KEY_PRICE,price)
-        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mSelectType,key,mHasMap)
+        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+"0",date,mHasMap)
 
 
     }

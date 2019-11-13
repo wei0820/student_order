@@ -1,12 +1,16 @@
 package com.student.student_order;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class OrderActivity extends AppCompatActivity {
+public class OrderManagerActivity extends AppCompatActivity {
     private ListView mListview,mListview2;
     private static final String TAG = "OrderActivity";
 
@@ -30,15 +34,12 @@ public class OrderActivity extends AppCompatActivity {
         mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(OrderActivity.this,"您選擇了"+parents[i].toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderManagerActivity.this,"您選擇了"+parents[i].toString(),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putInt("menu",i);
-                bundle.putString("name",parents[i]);
-                bundle.putString("urltype",type[i]);
-                bundle.putString("type","order");
+                bundle.putString("type",type[i]);
                 intent.putExtras(bundle);
-                intent.setClass(getApplication(),Order_1Activity.class);
+                intent.setClass(getApplication(),ManagerActivity.class);
                 startActivity(intent);
             }
         });

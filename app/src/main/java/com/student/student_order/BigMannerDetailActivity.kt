@@ -11,6 +11,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.firebase.client.Firebase
 import com.google.gson.Gson
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
@@ -41,7 +42,13 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
     }
 
     override fun getDeleteState(p0: Boolean, p1: String?, p2: Any?) {
-    }
+        if (p0) {
+            Toast.makeText(this, "刪除成功！", Toast.LENGTH_SHORT).show();
+            mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL, "data")
+        } else {
+            Toast.makeText(this, "刪除失敗！", Toast.LENGTH_SHORT).show();
+        }    }
+
 
     override fun getFireBaseDBState(p0: Boolean, p1: String?) {
     }
@@ -89,6 +96,7 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
     var size: String= ""
     var price: String = ""
     var name: String = ""
+    lateinit var deleteBtn :Button
     private val filePath: String? = null
     lateinit var  mSizeLay :LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,6 +120,7 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
     }
 
     fun initLayout() {
+        deleteBtn = findViewById(R.id.orderbtn)
         mSizeLay = findViewById(R.id.sizelay);
         mAddressEdt = findViewById(R.id.editText)
         mCheckBtn = findViewById(R.id.checkbtn)
@@ -134,6 +143,10 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
         mPriceEdt.setText(price)
         mSpinner.setText(item)
         mSpinner2.setText(size)
+        deleteBtn.setOnClickListener {
+            delete()
+
+        }
     }
 
     @SuppressLint("NewApi")
@@ -142,10 +155,6 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
             R.id.send -> {
 
                 sendData()
-//                test(MySharedPrefernces.getIsToken(this)
-//                        ,latitude.toString()
-//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
             }
         }
     }
@@ -223,27 +232,10 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
 
 
     }
+    fun delete(){
+        val firebase = Firebase(ResponseData.KEY_URL+intent.extras.getString("type"))
+        firebase.child(date).removeValue();
+    }
 
-//    fun test(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
-//                phone:String,url :String,price:String){
-//        val mCal = Calendar.getInstance()
-//        val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-//        var mHasMap = HashMap<String, String>()
-//        var key = MySharedPrefernces.getIsToken(this) + s
-//        mHasMap.put(ResponseData.KEY_DATE,key)
-//        mHasMap.put(ResponseData.KEY_ID,"poPnzPS2cRQv5jxftqnIWWOB9IO2")
-//        mHasMap.put(ResponseData.KEY_LAT,lat)
-//        mHasMap.put(ResponseData.KEY_LON,lon)
-//        mHasMap.put(ResponseData.KEY_SELECT_TYPE,"室內")
-//        mHasMap.put(ResponseData.KEY_START_TIME,"0 : 48")
-//        mHasMap.put(ResponseData.KEY_END_TIME,"6 : 48")
-//        mHasMap.put(ResponseData.KEY_PHONE,"0987987987")
-//        mHasMap.put(ResponseData.KEY_MESSAGE,"1111")
-//        mHasMap.put(ResponseData.KEY_PRICE,"100")
-//        mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
-//        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mType,key,mHasMap)
-//
-//
-//    }
 
 }

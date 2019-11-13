@@ -18,11 +18,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".mShopCarActivity"></activity>
+        <activity android:name=".ManagerActivity"></activity>
+        <activity android:name=".mShopCarActivity" />
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".LoginActivity"
                 android:theme="@style/AppTheme.FullScreen">
@@ -56,18 +57,19 @@
         <activity
                 android:name=".MemberActivity"
                 android:label="@string/title_activity_member"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".OrderNewsActivity"
                 android:label="@string/title_activity_news"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".OrderActivity"></activity>
-        <activity android:name=".Order_1Activity"></activity>
-        <activity android:name=".AddMenuActivity"></activity>
-        <activity android:name=".FastAddActivity"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".Order_1Activity" />
+        <activity android:name=".AddMenuActivity" />
+        <activity android:name=".FastAddActivity" />
         <activity android:name=".UserMessgeActivity" />
-        <activity android:name=".FoodLoveListActivity"></activity>
-        <activity android:name=".BigMannerActivity"></activity>
+        <activity android:name=".FoodLoveListActivity" />
+        <activity android:name=".BigMannerActivity" />
+        <activity android:name=".OrderManagerActivity"></activity>
     </application>
 
 </manifest>

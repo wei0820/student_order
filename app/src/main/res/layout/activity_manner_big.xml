@@ -237,13 +237,20 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/send"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="送出"
-        ></Button>
+            android:id="@+id/send"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="送出"
+            ></Button>
 
+    <Button
+            android:id="@+id/orderbtn"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="資料查詢"
+            ></Button>
 
 
 </LinearLayout>

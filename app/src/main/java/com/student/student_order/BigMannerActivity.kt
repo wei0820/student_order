@@ -1,6 +1,7 @@
 package com.student.student_order
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -97,6 +98,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     }
 
     fun initLayout() {
+        var morderbtn :Button = findViewById(R.id.orderbtn)
+        morderbtn.setOnClickListener {
+            startActivity(Intent(this,OrderManagerActivity::class.java))
+        }
         mSizeLay = findViewById(R.id.sizelay);
         mAddressEdt = findViewById(R.id.editText)
         mCheckBtn = findViewById(R.id.checkbtn)

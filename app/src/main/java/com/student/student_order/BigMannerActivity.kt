@@ -204,7 +204,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     }
 
     fun sendData(){
-        mPhoneString = mPhoneEdt.text.toString()
         mMessagerString = mMessageEdt.text.toString()
         if(!mMessagerString.isEmpty()
                 &&!mSelectType.isEmpty()

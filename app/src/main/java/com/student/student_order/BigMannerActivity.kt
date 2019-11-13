@@ -212,10 +212,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
-                addData(item
-                        ,size
-                        ,"23333",
-                       "100")
+//                addData(item
+//                        ,size
+//                        ,"23333",
+//                       "100")
                 dialog.dismiss()
                 this.finish()
             })

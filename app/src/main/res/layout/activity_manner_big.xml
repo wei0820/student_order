@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/sizelay"
         android:layout_marginTop="20dp"
 
         android:layout_width="match_parent"

@@ -93,9 +93,9 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     val mAppNames = arrayOf(0,1,2,3,4,5,6,7,8,9,10,
             11,12,13,14,15,16,17,18,19,20,
             21,22,23,24,25,26,27,28)
-
      var oldFile: File? = null
     private val filePath: String? = null
+    lateinit var  mSizeLay :LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this@BigMannerActivity)
@@ -108,6 +108,7 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     }
 
     fun initLayout() {
+        mSizeLay = findViewById(R.id.sizelay);
         mAddressEdt = findViewById(R.id.editText)
         mCheckBtn = findViewById(R.id.checkbtn)
         mStartbtn = findViewById(R.id.startbtn)
@@ -135,6 +136,12 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData[position], Toast.LENGTH_SHORT).show()
                 mSelectType  = searchSortSpinnerData[position]
+                if (position == 3){
+                    mSizeLay.visibility = View.VISIBLE
+                }else{
+                    mSizeLay.visibility = View.GONE
+
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -150,6 +157,7 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
                "小","中","大")
 
         mSpinner2 = findViewById(R.id.spinner2)
+        mSizeLay.visibility = View.GONE
         val adapter2 = ArrayAdapter(
                 this, // Context
                 android.R.layout.simple_spinner_item, // Layout
@@ -161,7 +169,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mSpinner2.adapter = adapter2;
         mSpinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData2[position], Toast.LENGTH_SHORT).show()
                 mType = mAppNames[position]
             }
 

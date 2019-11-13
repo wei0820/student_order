@@ -81,6 +81,8 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     lateinit var mSpinner2: Spinner
     val mAppNames = arrayOf("0","1","2","3")
      var oldFile: File? = null
+    var item :String = ""
+    var size :String = ""
     private val filePath: String? = null
     lateinit var  mSizeLay :LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,7 +125,7 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData[position], Toast.LENGTH_SHORT).show()
                 mSelectType  = mAppNames[position]
-
+                item = searchSortSpinnerData[position]
                 if (position == 3){
                     mSizeLay.visibility = View.VISIBLE
                 }else{
@@ -157,6 +159,7 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mSpinner2.adapter = adapter2;
         mSpinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                size = searchSortSpinnerData2[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {

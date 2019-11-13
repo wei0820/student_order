@@ -1,7 +1,7 @@
 package com.student.student_order;
 
 public class ResponseData {
-    public static  final  String KEY_URL = "https://search-245709.firebaseio.com/";
+    public static  final  String KEY_URL = "https://order-3fe87.firebaseio.com/";
     public static  final  String KEY_ID  = "id";
     public static  final  String KEY_LAT  = "lat";
     public static  final  String KEY_LON  = "lon";
@@ -9,11 +9,18 @@ public class ResponseData {
     public static  final  String KEY_END_TIME = "endtime";
     public static  final  String KEY_PHOTO_URL = "url";
     public static  final  String KEY_PHONE = "phone";
-    public static  final  String KEY_MESSAGE = "message";
+    public static  final  String KEY_NAME = "name";
     public static  final  String KEY_SELECT_TYPE = "select";
     public static  final  String KEY_PRICE = "price";
     public static  final  String KEY_DATE = "date";
+
+    public static  final  String KEY_SIZE  = "size";
+
+    public static  final  String KEY_ITEM  = "item";
+
     public static  final  String KEY_ALL = "ALL";
+
+
     public static  final  String KEY_0 = "0";
     public static  final  String KEY_1 = "1";
     public static  final  String KEY_2 = "2";

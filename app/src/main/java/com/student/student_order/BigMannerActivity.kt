@@ -1,20 +1,12 @@
 package com.student.student_order
 
 import android.annotation.SuppressLint
-import android.app.TimePickerDialog
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.location.Geocoder
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.format.DateFormat
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.View
 import android.widget.*
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
@@ -165,7 +157,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mSpinner2.adapter = adapter2;
         mSpinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                mType = mAppNames[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -246,14 +237,15 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
 
     }
-    fun addData(type:String,message:String,price:String){
+    fun addData(item:String, size:String,name:String, price:String){
         val mCal = Calendar.getInstance()
         val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
         var mHasMap = HashMap<String, String>()
         var key = MySharedPrefernces.getId(this) + s
         mHasMap.put(ResponseData.KEY_DATE,key)
-//        mHasMap.put(ResponseData.KEY_SELECT_TYPE,type)
-        mHasMap.put(ResponseData.KEY_MESSAGE,message)
+        mHasMap.put(ResponseData.KEY_SIZE,size)
+        mHasMap.put(ResponseData.KEY_ITEM,item)
+        mHasMap.put(ResponseData.KEY_NAME,name)
         mHasMap.put(ResponseData.KEY_PRICE,price)
         mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mSelectType,key,mHasMap)
 

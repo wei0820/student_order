@@ -12,6 +12,7 @@ import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.format.DateFormat
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
@@ -364,27 +365,20 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
 
     }
-//    fun addData(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
-//                phone:String,url :String,price:String){
-//        val mCal = Calendar.getInstance()
-//        val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-//        var mHasMap = HashMap<String, String>()
-//        var key = MySharedPrefernces.getIsToken(this) + s
-//        mHasMap.put(ResponseData.KEY_DATE,key)
-//        mHasMap.put(ResponseData.KEY_ID,id)
-//        mHasMap.put(ResponseData.KEY_LAT,lat)
-//        mHasMap.put(ResponseData.KEY_LON,lon)
-//        mHasMap.put(ResponseData.KEY_SELECT_TYPE,type)
-//        mHasMap.put(ResponseData.KEY_START_TIME,start)
-//        mHasMap.put(ResponseData.KEY_END_TIME,end)
-//        mHasMap.put(ResponseData.KEY_PHONE,phone)
-//        mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
-//        mHasMap.put(ResponseData.KEY_MESSAGE,message)
-//        mHasMap.put(ResponseData.KEY_PRICE,price)
-//        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mType,key,mHasMap)
-//
-//
-//    }
+    fun addData(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
+                phone:String,url :String,price:String){
+        val mCal = Calendar.getInstance()
+        val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
+        var mHasMap = HashMap<String, String>()
+        var key = MySharedPrefernces.getId(this) + s
+        mHasMap.put(ResponseData.KEY_DATE,key)
+        mHasMap.put(ResponseData.KEY_SELECT_TYPE,type)
+        mHasMap.put(ResponseData.KEY_MESSAGE,message)
+        mHasMap.put(ResponseData.KEY_PRICE,price)
+        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mType,key,mHasMap)
+
+
+    }
 
 //    fun test(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
 //                phone:String,url :String,price:String){

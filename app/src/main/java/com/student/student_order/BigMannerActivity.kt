@@ -210,17 +210,17 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
     fun sendData(){
         mMessagerString = mMessageEdt.text.toString()
+
         if(!mMessagerString.isEmpty()
-                &&!mSelectType.isEmpty()
                 &&!mPriceEdt.text.toString().isEmpty()){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
-//                addData(item
-//                        ,size
-//                        ,"23333",
-//                       "100")
+                addData(item
+                        ,size
+                        ,mMessageEdt.text.toString(),
+                    mPriceEdt.text.toString())
                 dialog.dismiss()
                 this.finish()
             })

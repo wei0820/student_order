@@ -101,8 +101,6 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
         var  s = intent.extras.getString("data")
         var  gson = Gson();
         var itemData :ItemData = gson.fromJson(s,ItemData::class.java)
-        Log.d("Jack",itemData.name)
-        Log.d("Jack",itemData.price)
         date = itemData.date
         name = itemData.name
         item = itemData.item
@@ -132,6 +130,10 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
         mSendBtn.setOnClickListener(this)
 
         mSpinner2 = findViewById(R.id.spinner2)
+        mMessageEdt.setText(name)
+        mPriceEdt.setText(price)
+        mSpinner.setText(item)
+        mSpinner2.setText(size)
     }
 
     @SuppressLint("NewApi")
@@ -171,7 +173,7 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
 
     fun sendData(){
         mMessagerString = mMessageEdt.text.toString()
-        mPhoneString = mPhoneEdt.text.toString()
+        mPhoneString = mPriceEdt.text.toString()
         if(!mMessagerString.isEmpty()
                 &&!mPriceEdt.text.toString().isEmpty()){
             val builder = AlertDialog.Builder(this)

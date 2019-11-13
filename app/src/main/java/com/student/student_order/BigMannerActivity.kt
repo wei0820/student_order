@@ -217,6 +217,9 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
+                if (size.isEmpty()){
+                    size = "小"
+                }
                 addData(item
                         ,size
                         ,mMessageEdt.text.toString(),
@@ -245,9 +248,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
     }
     fun addData(item:String, size:String,name:String, price:String){
-        if (this.size.isEmpty()){
-            this.size = "0"
-        }
         val mCal = Calendar.getInstance()
         val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
         var mHasMap = HashMap<String, String>()

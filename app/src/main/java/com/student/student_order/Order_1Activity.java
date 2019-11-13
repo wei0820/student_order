@@ -3,11 +3,18 @@ package com.student.student_order;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
-public class Order_1Activity extends AppCompatActivity {
+import com.google.gson.Gson;
+import com.jackpan.libs.mfirebaselib.MfiebaselibsClass;
+import com.jackpan.libs.mfirebaselib.MfirebaeCallback;
+
+public class Order_1Activity extends AppCompatActivity implements MfirebaeCallback {
     private ListView mListView;
+    MfiebaselibsClass mfiebaselibsClass;
+
     private String name = "";
     private int lay = 0;
     String type = "";
@@ -44,7 +51,7 @@ public class Order_1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_order_1);
         mListView = findViewById(R.id.listview);
         getData();
-
+        mfiebaselibsClass = new MfiebaselibsClass(this,this);
         adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 ,mString);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,6 +72,9 @@ public class Order_1Activity extends AppCompatActivity {
 
             }
         });
+        mfiebaselibsClass.getFirebaseDatabase(ResponseData.KEY_URL+"0","data");
+        Log.d("Jack",ResponseData.KEY_URL);
+
     }
     private void  getData(){
         lay =  getIntent().getIntExtra("menu",0);
@@ -138,6 +148,77 @@ public class Order_1Activity extends AppCompatActivity {
        }
 
 
+
+    }
+
+    private static final String TAG = "Order_1Activity";
+    @Override
+    public void getDatabaseData(Object o) {
+        Log.d(TAG, "getDatabaseData"+o.toString());
+        String s = new Gson().toJson(o);
+        ItemData itemData = new Gson().fromJson(s,ItemData.class);
+        Log.d(TAG, "getDatabaseData: "+itemData.name);
+        Log.d(TAG, "getDatabaseData: "+itemData.price);
+
+    }
+
+    @Override
+    public void getDeleteState(boolean b, String s, Object o) {
+
+    }
+
+    @Override
+    public void createUserState(boolean b) {
+
+    }
+
+    @Override
+    public void useLognState(boolean b) {
+
+    }
+
+    @Override
+    public void getuseLoginId(String s) {
+
+    }
+
+    @Override
+    public void getuserLoginEmail(String s) {
+
+    }
+
+    @Override
+    public void resetPassWordState(boolean b) {
+
+    }
+
+    @Override
+    public void getFireBaseDBState(boolean b, String s) {
+
+    }
+
+    @Override
+    public void getFirebaseStorageState(boolean b) {
+
+    }
+
+    @Override
+    public void getFirebaseStorageType(String s, String s1) {
+
+    }
+
+    @Override
+    public void getsSndPasswordResetEmailState(boolean b) {
+
+    }
+
+    @Override
+    public void getUpdateUserName(boolean b) {
+
+    }
+
+    @Override
+    public void getUserLogoutState(boolean b) {
 
     }
 }

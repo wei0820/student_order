@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/sizelay"
         android:layout_marginTop="20dp"
 
         android:layout_width="match_parent"
@@ -148,7 +149,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="一小時多少錢"
             android:inputType="number"
             tools:layout_editor_absoluteX="135dp"
             tools:layout_editor_absoluteY="318dp" />

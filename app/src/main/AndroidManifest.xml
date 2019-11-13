@@ -67,6 +67,7 @@
         <activity android:name=".FastAddActivity"></activity>
         <activity android:name=".UserMessgeActivity" />
         <activity android:name=".FoodLoveListActivity"></activity>
+        <activity android:name=".BigMannerActivity"></activity>
     </application>
 
 </manifest>

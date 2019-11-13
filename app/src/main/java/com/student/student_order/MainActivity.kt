@@ -150,6 +150,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this,"請先登入",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if(  MySharedPrefernces.getArrayList(this)==null){
+                Toast.makeText(this,"請先購物",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(  MySharedPrefernces.getPriceArrayList(this)==null){
+            Toast.makeText(this,"請先購物",Toast.LENGTH_SHORT).show()
+            return@setOnClickListener
+        }
             val intent  =Intent()
             intent.setClass(this,mShopCarActivity::class.java)
             startActivity(intent)
@@ -189,11 +197,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this@MainActivity,OrderNewsActivity::class.java))
 
             }
-//            R.id.nav_slideshow -> {
-//                val strInput = "037603156"
-//                val myIntentDial = Intent(Intent.ACTION_CALL, Uri.parse("tel:$strInput"))
-//                startActivity(myIntentDial)
-//            }
+            R.id.nav_slideshow -> {
+                startActivity(Intent(this@MainActivity,BigMannerActivity::class.java))
+
+            }
             R.id.nav_manage -> {
                 UiHelper.setDilog(this@MainActivity)
 

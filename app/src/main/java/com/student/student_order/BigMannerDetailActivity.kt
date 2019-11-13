@@ -223,27 +223,6 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
 
 
     }
-
-//    fun test(id :String,lat :String,lon :String,type:String,start:String,end:String,message:String,
-//                phone:String,url :String,price:String){
-//        val mCal = Calendar.getInstance()
-//        val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-//        var mHasMap = HashMap<String, String>()
-//        var key = MySharedPrefernces.getIsToken(this) + s
-//        mHasMap.put(ResponseData.KEY_DATE,key)
-//        mHasMap.put(ResponseData.KEY_ID,"poPnzPS2cRQv5jxftqnIWWOB9IO2")
-//        mHasMap.put(ResponseData.KEY_LAT,lat)
-//        mHasMap.put(ResponseData.KEY_LON,lon)
-//        mHasMap.put(ResponseData.KEY_SELECT_TYPE,"室內")
-//        mHasMap.put(ResponseData.KEY_START_TIME,"0 : 48")
-//        mHasMap.put(ResponseData.KEY_END_TIME,"6 : 48")
-//        mHasMap.put(ResponseData.KEY_PHONE,"0987987987")
-//        mHasMap.put(ResponseData.KEY_MESSAGE,"1111")
-//        mHasMap.put(ResponseData.KEY_PRICE,"100")
-//        mHasMap.put(ResponseData.KEY_PHOTO_URL,url)
-//        mFirebselibClass.setFireBaseDB(ResponseData.KEY_URL+"/"+mType,key,mHasMap)
-//
-//
-//    }
+    
 
 }

@@ -15,6 +15,9 @@ public class OrderActivity extends AppCompatActivity {
 
     String[] parents = new String[]{
             "漢堡","三明治","蛋餅","飲料"};
+
+    String[] type = new String[]{
+            ResponseData.KEY_0,ResponseData.KEY_1,ResponseData.KEY_2,ResponseData.KEY_3};
     ListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class OrderActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu",i);
                 bundle.putString("name",parents[i]);
+                bundle.putString("urltype",type[i]);
                 bundle.putString("type","order");
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),Order_1Activity.class);

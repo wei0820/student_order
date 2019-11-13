@@ -72,15 +72,16 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
 
             }
         });
-        mfiebaselibsClass.getFirebaseDatabase(ResponseData.KEY_URL+"0","date");
-        Log.d("Jack",ResponseData.KEY_URL);
 
     }
     private void  getData(){
         lay =  getIntent().getIntExtra("menu",0);
        name = getIntent().getStringExtra("name");
       type  = getIntent().getStringExtra("type");
-       if(type.equals("order")){
+      String urltype = getIntent().getStringExtra("urltype");
+        mfiebaselibsClass.getFirebaseDatabase(ResponseData.KEY_URL+urltype,"date");
+
+        if(type.equals("order")){
            switch (lay){
                case 0:
                    mString = menu2;

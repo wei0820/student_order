@@ -66,7 +66,7 @@ class ManagerActivity : AppCompatActivity() , MfirebaeCallback {
     private var food : ArrayAdapter<String>? =null
     var arrayList =ArrayList<String>()
     var array = ArrayList<ItemData>()
-
+    var s = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this)
@@ -85,6 +85,8 @@ class ManagerActivity : AppCompatActivity() , MfirebaeCallback {
             val gson = Gson()
 
             bundle.putString("data",gson.toJson(array[i]))
+            bundle.putString("type",s)
+
             intent.putExtras(bundle)
             intent.setClass(this,BigMannerDetailActivity::class.java)
             startActivity(intent)
@@ -94,7 +96,7 @@ class ManagerActivity : AppCompatActivity() , MfirebaeCallback {
     }
 
     fun  getData(){
-        val s = intent.extras.getString("type")
+        s = intent.extras.getString("type")
         Log.d("Jak",s)
         mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+s,"date")
 

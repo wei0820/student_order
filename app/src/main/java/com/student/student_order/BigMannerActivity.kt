@@ -212,10 +212,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             builder.setTitle("提示")
             builder.setMessage("以輸入全部資訊")
             builder.setPositiveButton("知道了", { dialog, whichButton ->
-//                addData(MySharedPrefernces.getIsToken(this)
-//                        ,latitude.toString()
-//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
+                addData(item
+                        ,size
+                        ,"23333",
+                       "100")
                 dialog.dismiss()
                 this.finish()
             })
@@ -240,6 +240,9 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
 
     }
     fun addData(item:String, size:String,name:String, price:String){
+        if (this.size.isEmpty()){
+            this.size = "0"
+        }
         val mCal = Calendar.getInstance()
         val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
         var mHasMap = HashMap<String, String>()

@@ -70,6 +70,7 @@
         <activity android:name=".FoodLoveListActivity" />
         <activity android:name=".BigMannerActivity" />
         <activity android:name=".OrderManagerActivity"></activity>
+        <activity android:name=".BigMannerDetailActivity"></activity>
     </application>
 
 </manifest>

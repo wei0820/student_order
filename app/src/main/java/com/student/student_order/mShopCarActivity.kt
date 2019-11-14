@@ -21,7 +21,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class mShopCarActivity : AppCompatActivity() , MfirebaeCallback {
+class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     override fun getUserLogoutState(p0: Boolean) {
     }
 
@@ -71,31 +71,43 @@ class mShopCarActivity : AppCompatActivity() , MfirebaeCallback {
 
     lateinit var mSendBtn: Button
     lateinit var mListView: QQListView
-    lateinit var mNumBtn :Button
-    var pirceArray :Int = 0
-    var priceTotal =0
-     var mAdapter: BaseAdapter? = null
+    lateinit var mNumBtn: Button
+    var pirceArray: Int = 0
+    var priceTotal = 0
+    var mAdapter: BaseAdapter? = null
 
-    var num :String = ""
-    var total :Int = 0
+    var num: String = ""
+    var total: Int = 0
     lateinit var mFirebselibClass: MfiebaselibsClass
 
-    private var food : ArrayAdapter<String>? =null
-    var mItem :String = ""
+    private var food: ArrayAdapter<String>? = null
+    var mItem: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mFirebselibClass = MfiebaselibsClass(this,this)
+        mFirebselibClass = MfiebaselibsClass(this, this)
 
         setContentView(R.layout.activity_m_shop_car)
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        mArray = MySharedPrefernces.getArrayList(this)
+        getItem()
         initView()
         setMember()
         getPrice()
 
 
     }
-    fun getPrice(){
+
+    fun getItem() {
+        mArray = MySharedPrefernces.getArrayList(this)
+        if (mArray.size != 0) {
+            mArray.forEach {
+                num = num + "\n" + it
+            }
+            Log.d("Jack", num)
+        }
+
+    }
+
+    fun getPrice() {
         mprice = MySharedPrefernces.getPriceArrayList(this)
         mprice.forEach {
             total = total + it.toInt()
@@ -133,12 +145,11 @@ class mShopCarActivity : AppCompatActivity() , MfirebaeCallback {
         }
         mListView.setAdapter(mAdapter)
         mListView.setOnItemRightViewClickListener(QQListView.OnItemRightViewClickListener { position, view ->
-            Log.d("TAG", "remove item")
             mArray.removeAt(position)
             mprice.removeAt(position)
             mAdapter!!.notifyDataSetChanged()
-            MySharedPrefernces.saveArrayList(this,mArray)
-            MySharedPrefernces.savePriceArrayList(this,mprice)
+            MySharedPrefernces.saveArrayList(this, mArray)
+            MySharedPrefernces.savePriceArrayList(this, mprice)
             getPrice()
         })
 
@@ -147,7 +158,7 @@ class mShopCarActivity : AppCompatActivity() , MfirebaeCallback {
 
         }
         mSendBtn.setOnClickListener {
-            var i = mItem +","+priceTotal
+            var i = mItem + "," + priceTotal
             mArray.add(i)
 
             food!!.notifyDataSetChanged()
@@ -162,14 +173,18 @@ class mShopCarActivity : AppCompatActivity() , MfirebaeCallback {
         mPhoneText.text = MySharedPrefernces.getUserName(this)
     }
 
-    fun addFirebase(){
+    fun addFirebase() {
         val mCal = Calendar.getInstance()
         val s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
         var mHasMap = HashMap<String, String>()
         var key = MySharedPrefernces.getId(this) + s
-        mHasMap.put("id",MySharedPrefernces.getId(this))
-        mHasMap.put("time",System.currentTimeMillis()+"")
-        mHasMap.put("food","")
-        mFirebselibClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(this), s.toString(),mHasMap)
+        mHasMap.put("id", MySharedPrefernces.getId(this))
+        mHasMap.put("time", System.currentTimeMillis() + "")
+        mHasMap.put("food", "")
+        mFirebselibClass.setFireBaseDB(
+            "https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(
+                this
+            ), s.toString(), mHasMap
+        )
     }
 }

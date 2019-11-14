@@ -131,12 +131,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
                 Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData[position], Toast.LENGTH_SHORT).show()
                 mSelectType  = mAppNames[position]
                 item = searchSortSpinnerData[position]
-                if (position == 3){
-                    mSizeLay.visibility = View.VISIBLE
-                }else{
-                    mSizeLay.visibility = View.GONE
-
-                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -148,11 +142,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mEndbtn.setOnClickListener(this)
         mPhotoButtton.setOnClickListener(this)
         mSendBtn.setOnClickListener(this)
-        val searchSortSpinnerData2 =arrayOf(
+        val searchSortSpinnerData2 =arrayOf("單一大小",
                "小","中","大")
 
         mSpinner2 = findViewById(R.id.spinner2)
-        mSizeLay.visibility = View.GONE
         val adapter2 = ArrayAdapter(
                 this, // Context
                 android.R.layout.simple_spinner_item, // Layout
@@ -179,10 +172,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             R.id.send -> {
 
                 sendData()
-//                test(MySharedPrefernces.getIsToken(this)
-//                        ,latitude.toString()
-//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
             }
         }
     }

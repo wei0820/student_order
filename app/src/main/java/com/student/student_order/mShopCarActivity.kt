@@ -91,6 +91,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
                 num = num + "\n" + it
             }
             Log.d("Jack", num)
+            num = ""
         }
 
     }
@@ -136,6 +137,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             MySharedPrefernces.saveArrayList(this, mArray)
             MySharedPrefernces.savePriceArrayList(this, mprice)
             getPrice()
+            getItem()
         })
 
 

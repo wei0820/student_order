@@ -58,25 +58,18 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     lateinit var mNameText: TextView
     lateinit var mPhoneText: TextView
     lateinit var mSpinner: Spinner
-    lateinit var mNumTextView: EditText
     lateinit var mPriceTextView: TextView
     var mArray = ArrayList<String>()
     var mprice = ArrayList<String>()
 
     lateinit var mSendBtn: Button
     lateinit var mListView: QQListView
-    lateinit var mNumBtn: Button
-    var pirceArray: Int = 0
-    var priceTotal = 0
     var mAdapter: BaseAdapter? = null
 
     var num: String = ""
     var total: Int = 0
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var msendshop :Button
-
-    private var food: ArrayAdapter<String>? = null
-    var mItem: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this)

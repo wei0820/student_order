@@ -201,18 +201,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                 MySharedPrefernces.savePriceArrayList(getApplicationContext(),priceList);
 
                 Toast.makeText(getApplicationContext(),"已送至購物車",Toast.LENGTH_SHORT).show();
-//                Calendar mCal = CalendaretInstance();
-//                CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());
-//
-//                // kk:24小時制, hh:12小時制
-//
-//                HashMap<String,String> hashMap = new HashMap<>();
-//                hashMap.put("id",MySharedPrefernces.getId(AddMenuActivity.this));
-//                hashMap.put("time",System.currentTimeMillis()+"");
-//                hashMap.put("food",mNameText.getText().toString());
-//                mfiebaselibsClass.setFireBaseDB("https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(AddMenuActivity.this), s.toString(), hashMap);
-//                Toast.makeText(AddMenuActivity.this,"送出訂單,請到歷史紀錄觀看",Toast.LENGTH_SHORT).show();
-//                finish();
+
 
             }
         });

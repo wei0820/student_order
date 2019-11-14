@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.google.gson.Gson
@@ -97,7 +96,6 @@ class ManagerActivity : AppCompatActivity() , MfirebaeCallback {
 
     fun  getData(){
         s = intent.extras.getString("type")
-        Log.d("Jak",s)
         mFirebselibClass.getFirebaseDatabase(ResponseData.KEY_URL+s,"date")
 
         }

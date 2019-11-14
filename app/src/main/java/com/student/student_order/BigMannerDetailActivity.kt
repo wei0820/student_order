@@ -153,7 +153,6 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.send -> {
-
                 sendData()
             }
         }

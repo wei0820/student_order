@@ -85,13 +85,13 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     }
 
     fun getItem() {
+        num = ""
         mArray = MySharedPrefernces.getArrayList(this)
         if (mArray.size != 0) {
             mArray.forEach {
                 num = num + "\n" + it
             }
             Log.d("Jack", num)
-            num = ""
         }
 
     }
@@ -138,9 +138,12 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             MySharedPrefernces.savePriceArrayList(this, mprice)
             getPrice()
             getItem()
+
         })
 
-
+    msendshop.setOnClickListener {
+        UiHelper.setShopCarDilog(this,num)
+    }
 
     }
 

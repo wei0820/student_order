@@ -1,20 +1,14 @@
 package com.student.student_order
 
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.format.DateFormat
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import java.util.*
@@ -125,12 +119,8 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
         mNameText = findViewById(R.id.nametext)
         mPhoneText = findViewById(R.id.phone)
         mSpinner = findViewById(R.id.spiner)
-        mNumTextView = findViewById(R.id.num)
         mPriceTextView = findViewById(R.id.price)
-        mSendBtn = findViewById(R.id.send)
         mListView = findViewById(R.id.id_listview)
-        mNumBtn = findViewById(R.id.numbtn)
-
         mAdapter = object : ArrayAdapter<String>(
             this,
             -1, mArray
@@ -155,17 +145,6 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             getPrice()
         })
 
-        mNumBtn.setOnClickListener {
-            priceTotal = pirceArray * mNumTextView.text.toString().toInt()
-
-        }
-        mSendBtn.setOnClickListener {
-            var i = mItem + "," + priceTotal
-            mArray.add(i)
-
-            food!!.notifyDataSetChanged()
-
-        }
 
 
     }

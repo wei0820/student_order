@@ -79,6 +79,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     var num: String = ""
     var total: Int = 0
     lateinit var mFirebselibClass: MfiebaselibsClass
+    lateinit var msendshop :Button
 
     private var food: ArrayAdapter<String>? = null
     var mItem: String = ""
@@ -120,6 +121,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     }
 
     fun initView() {
+        msendshop = findViewById(R.id.sendshop)
         mNameText = findViewById(R.id.nametext)
         mPhoneText = findViewById(R.id.phone)
         mSpinner = findViewById(R.id.spiner)

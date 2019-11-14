@@ -181,7 +181,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
         var mHasMap = HashMap<String, String>()
         var key = MySharedPrefernces.getId(this) + s
         mHasMap.put("id", MySharedPrefernces.getId(this))
-        mHasMap.put("time", System.currentTimeMillis() + "")
+        mHasMap.put("time", System.currentTimeMillis().toString())
         mHasMap.put("food", "")
         mFirebselibClass.setFireBaseDB(
             "https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(

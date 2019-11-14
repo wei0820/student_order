@@ -89,6 +89,7 @@ class ManagerActivity : AppCompatActivity() , MfirebaeCallback {
             intent.putExtras(bundle)
             intent.setClass(this,BigMannerDetailActivity::class.java)
             startActivity(intent)
+            finish()
 
 
         }

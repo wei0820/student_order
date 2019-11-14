@@ -95,6 +95,17 @@ public class UiHelper {
 
         alertDialog.show();
     }
-
+    public static void setShopCarDilog(Context context,String s) {
+        AlertDialog show = new AlertDialog.Builder(context)
+                .setTitle("訂單資訊")//設定視窗標題
+                .setMessage(s)//設定顯示的文字
+                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })//設定結束的子視窗
+                .show();//呈現對話視窗
+    }
 }
 

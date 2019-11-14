@@ -72,11 +72,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     lateinit var mMessageEdt: EditText
     lateinit var mSendBtn: Button
     var mSelectType : String = ""
-    var mType : Int = 0
-
-    var mStartString :String = ""
-    var  mEndString :String = ""
-    var mPhoneString :String = ""
     var mMessagerString : String = ""
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var mSpinner2: Spinner
@@ -84,7 +79,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
      var oldFile: File? = null
     var item :String = ""
     var size :String = ""
-    private val filePath: String? = null
     lateinit var  mSizeLay :LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,12 +125,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
                 Toast.makeText(this@BigMannerActivity, "選擇" + searchSortSpinnerData[position], Toast.LENGTH_SHORT).show()
                 mSelectType  = mAppNames[position]
                 item = searchSortSpinnerData[position]
-                if (position == 3){
-                    mSizeLay.visibility = View.VISIBLE
-                }else{
-                    mSizeLay.visibility = View.GONE
-
-                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -148,11 +136,10 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
         mEndbtn.setOnClickListener(this)
         mPhotoButtton.setOnClickListener(this)
         mSendBtn.setOnClickListener(this)
-        val searchSortSpinnerData2 =arrayOf(
+        val searchSortSpinnerData2 =arrayOf("單一大小",
                "小","中","大")
 
         mSpinner2 = findViewById(R.id.spinner2)
-        mSizeLay.visibility = View.GONE
         val adapter2 = ArrayAdapter(
                 this, // Context
                 android.R.layout.simple_spinner_item, // Layout
@@ -179,10 +166,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
             R.id.send -> {
 
                 sendData()
-//                test(MySharedPrefernces.getIsToken(this)
-//                        ,latitude.toString()
-//                        ,longitude.toString(),mSelectType,mStartbtn.text.toString(),
-//                        mEndbtn.text.toString(),mMessagerString,mPhoneString,img,mPriceEdt.text.toString())
             }
         }
     }

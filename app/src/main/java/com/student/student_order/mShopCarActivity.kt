@@ -1,20 +1,14 @@
 package com.student.student_order
 
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.format.DateFormat
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback
 import java.util.*
@@ -64,25 +58,18 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     lateinit var mNameText: TextView
     lateinit var mPhoneText: TextView
     lateinit var mSpinner: Spinner
-    lateinit var mNumTextView: EditText
     lateinit var mPriceTextView: TextView
     var mArray = ArrayList<String>()
     var mprice = ArrayList<String>()
 
     lateinit var mSendBtn: Button
     lateinit var mListView: QQListView
-    lateinit var mNumBtn: Button
-    var pirceArray: Int = 0
-    var priceTotal = 0
     var mAdapter: BaseAdapter? = null
 
     var num: String = ""
     var total: Int = 0
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var msendshop :Button
-
-    private var food: ArrayAdapter<String>? = null
-    var mItem: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFirebselibClass = MfiebaselibsClass(this, this)
@@ -104,6 +91,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
                 num = num + "\n" + it
             }
             Log.d("Jack", num)
+            num = ""
         }
 
     }
@@ -125,12 +113,8 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
         mNameText = findViewById(R.id.nametext)
         mPhoneText = findViewById(R.id.phone)
         mSpinner = findViewById(R.id.spiner)
-        mNumTextView = findViewById(R.id.num)
         mPriceTextView = findViewById(R.id.price)
-        mSendBtn = findViewById(R.id.send)
         mListView = findViewById(R.id.id_listview)
-        mNumBtn = findViewById(R.id.numbtn)
-
         mAdapter = object : ArrayAdapter<String>(
             this,
             -1, mArray
@@ -153,19 +137,9 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             MySharedPrefernces.saveArrayList(this, mArray)
             MySharedPrefernces.savePriceArrayList(this, mprice)
             getPrice()
+            getItem()
         })
 
-        mNumBtn.setOnClickListener {
-            priceTotal = pirceArray * mNumTextView.text.toString().toInt()
-
-        }
-        mSendBtn.setOnClickListener {
-            var i = mItem + "," + priceTotal
-            mArray.add(i)
-
-            food!!.notifyDataSetChanged()
-
-        }
 
 
     }

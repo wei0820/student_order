@@ -48,10 +48,10 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mfiebaselibsClass = new MfiebaselibsClass(this,this);
         setContentView(R.layout.activity_order_1);
         mListView = findViewById(R.id.listview);
         getData();
-        mfiebaselibsClass = new MfiebaselibsClass(this,this);
         adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 ,mString);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

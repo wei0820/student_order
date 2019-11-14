@@ -235,6 +235,8 @@ class BigMannerDetailActivity : AppCompatActivity(), View.OnClickListener, Mfire
     fun delete(){
         val firebase = Firebase(ResponseData.KEY_URL+intent.extras.getString("type"))
         firebase.child(date).removeValue();
+        finish()
+
     }
 
 

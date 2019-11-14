@@ -72,11 +72,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
     lateinit var mMessageEdt: EditText
     lateinit var mSendBtn: Button
     var mSelectType : String = ""
-    var mType : Int = 0
-
-    var mStartString :String = ""
-    var  mEndString :String = ""
-    var mPhoneString :String = ""
     var mMessagerString : String = ""
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var mSpinner2: Spinner
@@ -84,7 +79,6 @@ class BigMannerActivity : AppCompatActivity(), View.OnClickListener, MfirebaeCal
      var oldFile: File? = null
     var item :String = ""
     var size :String = ""
-    private val filePath: String? = null
     lateinit var  mSizeLay :LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

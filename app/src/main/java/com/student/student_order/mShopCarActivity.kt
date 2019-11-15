@@ -63,8 +63,8 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
     var mprice = ArrayList<String>()
 
     lateinit var mSendBtn: Button
-    lateinit var mListView: QQListView
-    var mAdapter: BaseAdapter? = null
+    lateinit var mListView: ListView
+    var mAdapter: MyAdapter? = null
 
     var num: String = ""
     var total: Int = 0
@@ -91,7 +91,6 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             mArray.forEach {
                 num = num + "\n" + it
             }
-            Log.d("Jack", num)
         }
 
     }
@@ -115,34 +114,13 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
         mSpinner = findViewById(R.id.spiner)
         mPriceTextView = findViewById(R.id.price)
         mListView = findViewById(R.id.id_listview)
-        mAdapter = object : ArrayAdapter<String>(
-            this,
-            -1, mArray
-        ) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                var convertView = convertView
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
-                }
-                val tv = convertView!!.findViewById(R.id.id_text) as TextView
-                tv.text = getItem(position)
-                return convertView
-            }
-        }
+        mAdapter = MyAdapter(mArray)
         mListView.setAdapter(mAdapter)
-        mListView.setOnItemRightViewClickListener(QQListView.OnItemRightViewClickListener { position, view ->
-            mArray.removeAt(position)
-            mprice.removeAt(position)
-            mAdapter!!.notifyDataSetChanged()
-            MySharedPrefernces.saveArrayList(this, mArray)
-            MySharedPrefernces.savePriceArrayList(this, mprice)
-            getPrice()
-            getItem()
 
-        })
 
     msendshop.setOnClickListener {
-        UiHelper.setShopCarDilog(this,num)
+//        getItem()
+//        UiHelper.setShopCarDilog(this,num)
     }
 
     }
@@ -166,4 +144,50 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             ), s.toString(), mHasMap
         )
     }
+
+
+    inner class MyAdapter(var mAllData: ArrayList<String>?) : BaseAdapter() {
+        fun updateData(datas: ArrayList<String>) {
+            mAllData = datas
+            notifyDataSetChanged()
+        }
+
+        override fun getCount(): Int {
+            return mAllData!!.size
+        }
+
+        override fun getItem(position: Int): Any {
+            return mAllData!![position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            var convertView = convertView
+            val data = mAllData!![position]
+            if (convertView == null)
+                convertView = LayoutInflater.from(this@mShopCarActivity).inflate(
+                    R.layout.listview_layout, null)
+            var mTittleText : TextView = convertView!!.findViewById(R.id.listviewtext)
+            var photoimg : ImageView = convertView!!.findViewById(R.id.listview_img)
+            mTittleText.setText(data)
+            photoimg.setOnClickListener {
+                mArray.removeAt(position)
+                mprice.removeAt(position)
+                MySharedPrefernces.saveArrayList(this@mShopCarActivity, mArray)
+                MySharedPrefernces.savePriceArrayList(this@mShopCarActivity, mprice)
+                getPrice()
+                mAdapter!!.notifyDataSetChanged()
+
+
+            }
+
+
+            return convertView
+        }
+
+    }
+
 }

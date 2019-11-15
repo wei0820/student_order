@@ -18,7 +18,14 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private SwitchCompat switchCompat1,switchCompat2,switchCompat3,switchCompat4,switchCompat5,switchCompat6,switchCompat7;
     private TextView mNameText;
     private Button mButton1,mButton2;
-    private String add,add2,add3,add4,add5,add6,add7;
+    private String add = "";
+    private String add2 = "";
+    private String add3 = "";
+    private String add4 = "";
+    private String add5 = "";
+    private String add6 = "";
+    private String add7 = "";
+
     private String name;
     private LinearLayout layout,layout2,layout3;
     MfiebaselibsClass mfiebaselibsClass;
@@ -65,8 +72,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     add = "不加生菜";
 
                 }
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
-                mNameText.setText(title+name + add);
+                mNameText.setText(s);
 
             }
         });
@@ -81,8 +90,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加洋蔥",Toast.LENGTH_SHORT).show();
                     add2 = "不加洋蔥";
                 }
-                mNameText.setText(title+name + add +add2);
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
+                mNameText.setText(s);
             }
         });
         switchCompat3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -95,8 +106,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加番茄醬",Toast.LENGTH_SHORT).show();
                     add3 = "不加番茄醬";
                 }
-                mNameText.setText(title+name + add +add2 +add3);
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
+                mNameText.setText(s);
             }
         });
         switchCompat4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -110,8 +123,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     add4 = "不加醬油膏";
                 }
 
-                mNameText.setText(title+name + add4);
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
+                mNameText.setText(s);
             }
         });
         switchCompat5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -124,13 +139,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加泰式酸辣醬",Toast.LENGTH_SHORT).show();
                     add5 = "不加泰式酸辣醬";
                 }
-                if (add4!=null){
-                    mNameText.setText(title+name + add4 +add5 );
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
-                }else {
-                    mNameText.setText(title+name+add5 );
-
-                }
+                mNameText.setText(s);
 
             }
         });
@@ -147,13 +159,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     add6 = "不加番茄醬";
                 }
 
-                if (add4!=null&&add5!=null){
-                    mNameText.setText(title+name + add4 +add5 +add6 );
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
-                }else {
-                    mNameText.setText(title+name+add6);
-
-                }
+                mNameText.setText(s);
 
 
             }
@@ -168,8 +177,10 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     Toast.makeText(getApplication(),"不加冰塊",Toast.LENGTH_SHORT).show();
                     add7 = "不加冰塊";
                 }
-                mNameText.setText(title+name + add7);
+                String s = title + name +add +add2
+                        +add3+add4+add5+add6+add7;
 
+                mNameText.setText(s);
             }
         });
 

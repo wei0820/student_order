@@ -263,16 +263,16 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     break;
             }
         }
-        if (getIntent().getStringExtra("newname")!=null){
-            newName = getIntent().getStringExtra("newname");
-            Log.d(TAG, "getData: "+newName);
-        }
-        if (getIntent().getStringExtra("newprice")!=null){
-
-            newPrice = Integer.parseInt(getIntent().getStringExtra("newprice"));
-            Log.d(TAG, "getData: "+newPrice);
-
-        }
+//        if (getIntent().getStringExtra("newname")!=null){
+//            newName = getIntent().getStringExtra("newname");
+//            Log.d(TAG, "getData: "+newName);
+//        }
+//        if (getIntent().getStringExtra("newprice")!=null){
+//
+//            newPrice = Integer.parseInt(getIntent().getStringExtra("newprice"));
+//            Log.d(TAG, "getData: "+newPrice);
+//
+//        }
 
     }
 

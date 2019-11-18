@@ -43,7 +43,7 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
     Integer [] i4 =new Integer[]{20,25,25,25, 25,25,25,25,25,30,30,30,30,35,35,35,35,45};
     Integer [] i9 =new Integer[]{15,10,15,10,20,15,10,20,15,10,20,15,20,15,20,15,10,20,15,10,20,15,10,20,20,25,20,30,20};
 
-    ListAdapter adapter;
+    ArrayAdapter adapter;
     private  String[] mString = new String[]{};
     private  Integer[] price = new Integer[]{};
     private  String mTitle;
@@ -54,9 +54,9 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
         super.onCreate(savedInstanceState);
         mfiebaselibsClass = new MfiebaselibsClass(this,this);
         setContentView(R.layout.activity_order_1);
-        mListView = findViewById(R.id.listview);
         getData();
-        adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 ,mString);
+        mListView = findViewById(R.id.listview);
+        adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 ,arrayList);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,12 +65,12 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu",lay);
-                bundle.putString("name",mString[i]);
-                bundle.putInt("price",price[i]);
+//                bundle.putString("name",mString[i]);
+//                bundle.putInt("price",price[i]);
                 bundle.putString("type",type);
                 bundle.putString("title",name);
-                bundle.putString("newname",arrayList.get(i));
-                bundle.putString("newprice",priceList.get(i));
+                bundle.putString("name",arrayList.get(i));
+                bundle.putInt("price",Integer.parseInt(priceList.get(i)));
 
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),AddMenuActivity.class);
@@ -86,7 +86,7 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
        name = getIntent().getStringExtra("name");
       type  = getIntent().getStringExtra("type");
       String urltype = getIntent().getStringExtra("urltype");
-        mfiebaselibsClass.getFirebaseDatabase(ResponseData.KEY_URL+urltype,"date");
+      mfiebaselibsClass.getFirebaseDatabase(ResponseData.KEY_URL+urltype,"date");
 
         if(type.equals("order")){
            switch (lay){
@@ -165,15 +165,12 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
     public void getDatabaseData(Object o) {
         arrayList.clear();
         priceList.clear();
-        Log.d(TAG, "getDatabaseData"+o.toString());
         String s = new Gson().toJson(o);
         ItemData itemData = new Gson().fromJson(s,ItemData.class);
-        Log.d(TAG, "getDatabaseData: "+itemData.name);
-        Log.d(TAG, "getDatabaseData: "+itemData.price);
         String name = itemData.name + "\t" + itemData.price+"元";
         arrayList.add(name);
         priceList.add(itemData.price);
-
+        adapter.notifyDataSetChanged();
 
     }
 

@@ -36,6 +36,8 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
     private ArrayList<String> arrayList = new ArrayList<>();
     private ArrayList<String> priceList = new ArrayList<>();
     private String title;
+    private String newName;
+    private Integer newPrice ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,6 +229,7 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
 
     private static final String TAG = "AddMenuActivity";
     private void getData() {
+
         mPrice = getIntent().getIntExtra("price",0);
         name = getIntent().getStringExtra("name");
           if(getIntent().getStringExtra("title")!=null){
@@ -259,6 +262,16 @@ public class AddMenuActivity extends AppCompatActivity implements MfirebaeCallba
                     layout3.setVisibility(View.GONE);
                     break;
             }
+        }
+        if (getIntent().getStringExtra("newname")!=null){
+            newName = getIntent().getStringExtra("newname");
+            Log.d(TAG, "getData: "+newName);
+        }
+        if (getIntent().getStringExtra("newprice")!=null){
+
+            newPrice = Integer.parseInt(getIntent().getStringExtra("newprice"));
+            Log.d(TAG, "getData: "+newPrice);
+
         }
 
     }

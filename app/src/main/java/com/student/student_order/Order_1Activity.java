@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.jackpan.libs.mfirebaselib.MfiebaselibsClass;
 import com.jackpan.libs.mfirebaselib.MfirebaeCallback;
 
+import java.util.ArrayList;
+
 public class Order_1Activity extends AppCompatActivity implements MfirebaeCallback {
     private ListView mListView;
     MfiebaselibsClass mfiebaselibsClass;
@@ -45,6 +47,8 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
     private  String[] mString = new String[]{};
     private  Integer[] price = new Integer[]{};
     private  String mTitle;
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayList<String> priceList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,9 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
                 bundle.putInt("price",price[i]);
                 bundle.putString("type",type);
                 bundle.putString("title",name);
+                bundle.putString("newname",arrayList.get(i));
+                bundle.putString("newprice",priceList.get(i));
+
                 intent.putExtras(bundle);
                 intent.setClass(getApplication(),AddMenuActivity.class);
                 startActivity(intent);
@@ -152,14 +159,21 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
 
     }
 
+
     private static final String TAG = "Order_1Activity";
     @Override
     public void getDatabaseData(Object o) {
+        arrayList.clear();
+        priceList.clear();
         Log.d(TAG, "getDatabaseData"+o.toString());
         String s = new Gson().toJson(o);
         ItemData itemData = new Gson().fromJson(s,ItemData.class);
         Log.d(TAG, "getDatabaseData: "+itemData.name);
         Log.d(TAG, "getDatabaseData: "+itemData.price);
+        String name = itemData.name + "\t" + itemData.price+"元";
+        arrayList.add(name);
+        priceList.add(itemData.price);
+
 
     }
 

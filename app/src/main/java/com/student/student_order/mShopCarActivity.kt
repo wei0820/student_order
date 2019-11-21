@@ -91,9 +91,23 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
             mArray.forEach {
                 num = num + "\n" + it
             }
+            Log.d("Jack",num)
         }
 
     }
+    fun getTotal() :String{
+        num = ""
+        if (mArray.size != 0) {
+            mArray.forEach {
+                num = num + "\n" + it
+            }
+            Log.d("Jack",num)
+            return num
+        }
+        return num
+
+    }
+
 
     fun getPrice() {
         mprice = MySharedPrefernces.getPriceArrayList(this)
@@ -120,7 +134,8 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
 
     msendshop.setOnClickListener {
 //        getItem()
-//        UiHelper.setShopCarDilog(this,num)
+        UiHelper.setShopCarDilog(this,        getTotal()
+        )
     }
 
     }

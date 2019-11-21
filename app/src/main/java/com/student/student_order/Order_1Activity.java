@@ -163,8 +163,8 @@ public class Order_1Activity extends AppCompatActivity implements MfirebaeCallba
     private static final String TAG = "Order_1Activity";
     @Override
     public void getDatabaseData(Object o) {
-        arrayList.clear();
-        priceList.clear();
+//        arrayList.clear();
+//        priceList.clear();
         String s = new Gson().toJson(o);
         ItemData itemData = new Gson().fromJson(s,ItemData.class);
         String name = itemData.name + "\t" + itemData.price+"元";

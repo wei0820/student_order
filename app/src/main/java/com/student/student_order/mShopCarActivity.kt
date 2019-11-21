@@ -68,6 +68,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
 
     var num: String = ""
     var total: Int = 0
+    var totalPrcie = 0
     lateinit var mFirebselibClass: MfiebaselibsClass
     lateinit var msendshop :Button
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,10 +117,12 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
 
         }
         mPriceTextView.text = total.toString()
-
+        totalPrcie = total
         total = 0
 
+
     }
+
 
     fun initView() {
         msendshop = findViewById(R.id.sendshop)
@@ -134,8 +137,8 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
 
     msendshop.setOnClickListener {
 //        getItem()
-        UiHelper.setShopCarDilog(this,        getTotal()
-        )
+        UiHelper.setShopCarDilog(this,getTotal()+"\n"+totalPrcie)
+
     }
 
     }

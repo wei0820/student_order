@@ -139,6 +139,13 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
 //        getItem()
 //        UiHelper.setShopCarDilog(this,getTotal()+"\n"+totalPrcie)
         addFirebase()
+        mArray.clear()
+        mprice.clear()
+        MySharedPrefernces.savePriceArrayList(this,null)
+        MySharedPrefernces.saveArrayList(this,null)
+        mAdapter!!.notifyDataSetChanged()
+
+
 
 
     }

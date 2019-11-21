@@ -108,7 +108,7 @@ public class FoodLoveListActivity extends AppCompatActivity implements MfirebaeC
             public void onChildAdded(com.firebase.client.DataSnapshot dataSnapshot, String s) {
 
                 FoodData foodData = dataSnapshot.getValue(FoodData.class);
-                String st = "點過的商品:"+foodData.food;
+                String st = "點過的商品:"+foodData.food+"\n"+"總價錢"+foodData.price;
                 arrayList.add(st);
                 mListview.setAdapter(adapter);
             }

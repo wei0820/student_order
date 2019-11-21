@@ -137,7 +137,9 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
 
     msendshop.setOnClickListener {
 //        getItem()
-        UiHelper.setShopCarDilog(this,getTotal()+"\n"+totalPrcie)
+//        UiHelper.setShopCarDilog(this,getTotal()+"\n"+totalPrcie)
+        addFirebase()
+
 
     }
 
@@ -155,7 +157,8 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
         var key = MySharedPrefernces.getId(this) + s
         mHasMap.put("id", MySharedPrefernces.getId(this))
         mHasMap.put("time", System.currentTimeMillis().toString())
-        mHasMap.put("food", "")
+        mHasMap.put("food", getTotal())
+        mHasMap.put("price",totalPrcie.toString());
         mFirebselibClass.setFireBaseDB(
             "https://order-3fe87.firebaseio.com/FavoriteList" + "/" + MySharedPrefernces.getId(
                 this

@@ -144,6 +144,7 @@ class mShopCarActivity : AppCompatActivity(), MfirebaeCallback {
         MySharedPrefernces.savePriceArrayList(this,null)
         MySharedPrefernces.saveArrayList(this,null)
         mAdapter!!.notifyDataSetChanged()
+        mPriceTextView.text = ""
 
 
 

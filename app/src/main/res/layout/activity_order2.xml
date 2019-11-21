@@ -7,6 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".OrderActivity"
         android:orientation="vertical">
+    <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="如需預定餐點 請來電告知"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            ></TextView>
     <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"

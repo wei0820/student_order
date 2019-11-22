@@ -21,10 +21,10 @@
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="店家資訊"/>
-                <item
-                        android:id="@+id/nav_slideshow"
-                        android:icon="@drawable/ic_menu_slideshow"
-                        android:title="店家上傳"/>
+<!--                <item-->
+<!--                        android:id="@+id/nav_slideshow"-->
+<!--                        android:icon="@drawable/ic_menu_slideshow"-->
+<!--                        android:title="店家上傳"/>-->
     </group>
 
     <item android:title="Communicate">

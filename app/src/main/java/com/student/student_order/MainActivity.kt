@@ -197,10 +197,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this@MainActivity,OrderNewsActivity::class.java))
 
             }
-            R.id.nav_slideshow -> {
-                startActivity(Intent(this@MainActivity,BigMannerActivity::class.java))
-
-            }
+            // 店家版
+//            R.id.nav_slideshow -> {
+//                startActivity(Intent(this@MainActivity,BigMannerActivity::class.java))
+//
+//            }
             R.id.nav_manage -> {
                 UiHelper.setDilog(this@MainActivity)
 
